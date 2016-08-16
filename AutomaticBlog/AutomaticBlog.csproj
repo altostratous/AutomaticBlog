@@ -63,6 +63,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="XulFx">
+      <HintPath>..\..\Project Files\XulFx.dll</HintPath>
+    </Reference>
+    <Reference Include="XulFx.Windows.Forms">
+      <HintPath>..\..\Project Files\XulFx.Windows.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs">
@@ -97,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FrontEndAutomation\FrontEndAutomation.csproj">
+      <Project>{4d37102f-9850-4679-8c8d-e775a4249896}</Project>
+      <Name>FrontEndAutomation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

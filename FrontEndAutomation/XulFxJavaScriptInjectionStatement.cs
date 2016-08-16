@@ -9,7 +9,7 @@ using System.IO;
 
 namespace FrontEndAutomation
 {
-    class XulFxJavaScriptInjectionStatement : Statement
+    public class XulFxJavaScriptInjectionStatement : Statement
     {
         public string FileName { get; set; }
 

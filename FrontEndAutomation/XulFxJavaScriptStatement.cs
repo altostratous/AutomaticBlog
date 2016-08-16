@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrontEndAutomation
 {
-    class XulFxJavaScriptStatement : Statement
+    public class XulFxJavaScriptStatement : Statement
     {
         public string Script { get; set; }
 

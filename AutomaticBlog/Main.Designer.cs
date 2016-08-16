@@ -28,13 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.webView = new Gecko.Windows.WebView();
             this.SuspendLayout();
+            // 
+            // webView
+            // 
+            this.webView.Location = new System.Drawing.Point(278, 12);
+            this.webView.Name = "webView";
+            this.webView.Size = new System.Drawing.Size(631, 423);
+            this.webView.TabIndex = 0;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(921, 447);
+            this.Controls.Add(this.webView);
             this.Name = "Main";
             this.Text = "Automatic Blog";
             this.ResumeLayout(false);
@@ -42,6 +51,8 @@
         }
 
         #endregion
+
+        private Gecko.Windows.WebView webView;
     }
 }
 
