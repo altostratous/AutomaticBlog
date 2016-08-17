@@ -20,23 +20,13 @@ namespace AutomaticBlog
         public Main()
         {
             Gecko.Xpcom.Initialize(Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) , "xulrunner"));
-            Gecko.GeckoPreferences.User["capability.policy.default.Window.alert"] = "noAccess";
-            Gecko.GeckoPreferences.User["capability.policy.default.Window.confirm"] = "noAccess";
-            Gecko.GeckoPreferences.User["capability.policy.default.Window.prompt"] = "noAccess";
-            Gecko.GeckoPreferences.Default["capability.policy.default.Window.alert"] = "noAccess";
-            Gecko.GeckoPreferences.Default["capability.policy.default.Window.confirm"] = "noAccess";
-            Gecko.GeckoPreferences.Default["capability.policy.default.Window.prompt"] = "noAccess";
             InitializeComponent();
-            executor = new XulFxExecutor(scope, new XulFxJavaScriptStatement() { Script = "alert(\"Hello therer\");" }, webView.Window);
+            webView.Navigate("http://google.com");
+            scope = new Scope(null);
+            XulFxJavaScriptInjectionStatement script = new XulFxJavaScriptInjectionStatement() { FileName = "jquery-2.1.4.js" };
+            executor = new XulFxExecutor(scope, script, webView.Window);
             executor.Execute();
-            foreach (Form frm in this.MdiChildren)
-            {
-                if (frm.GetType() == this.GetType()
-                    && frm != this)
-                {
-                    frm.Close();
-                }
-            }
+            webView.Window.Evaluate("$('body').hide();");
         }
     }
 }
