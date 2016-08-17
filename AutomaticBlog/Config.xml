@@ -8,6 +8,7 @@
   </feeds>
   <blogs>
     <blog>
+      <url>http://poor.javanblog.ir/</url>
       <username>alto</username>
       <password>poorpoor</password>
       <login>Scripts/JavanBlogLogin.xml</login>
