@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <feeds>
+    <feed>
+      <url>http://aghlaniat.blog.ir/rss/</url>
+      <script>Scripts/BlogDotIrFeed.xml</script>
+    </feed>
+  </feeds>
+  <blogs>
+    <blog>
+      <username>alto</username>
+      <password>poorpoor</password>
+      <login>Scripts/JavanBlogLogin.xml</login>
+      <post>Scripts/JavanBlogPost.xml</post>
+    </blog>
+  </blogs>
+</config>

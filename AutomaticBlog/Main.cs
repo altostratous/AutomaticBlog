@@ -21,12 +21,7 @@ namespace AutomaticBlog
         {
             Gecko.Xpcom.Initialize(Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) , "xulrunner"));
             InitializeComponent();
-            webView.Navigate("http://google.com");
             scope = new Scope(null);
-            XulFxJavaScriptInjectionStatement script = new XulFxJavaScriptInjectionStatement() { FileName = "jquery-2.1.4.js" };
-            executor = new XulFxExecutor(scope, script, webView.Window);
-            executor.Execute();
-            webView.Window.Evaluate("$('body').hide();");
         }
     }
 }
