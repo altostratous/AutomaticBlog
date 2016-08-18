@@ -48,41 +48,17 @@ namespace AutomaticBlog
             int counter = 0;
             foreach (string url in urls)
             {
-                HtmlDocument doc = new HtmlDocument();
-                doc.LoadHtml(load(url));
-                IEnumerable<HtmlNode> nodes = doc.DocumentNode.DescendantsAndSelf();
-                List<HtmlNode> goodNodes = new List<HtmlNode>();
-                foreach(HtmlNode node in nodes)
-                {
-                    if (node.InnerText.Contains(Posts[counter].Abstract.Substring(0, 20)))
-                    {
-                        goodNodes.Add(node);
-                    }
-                }
-                for(int i = goodNodes.Count - 1; i >=0; i--)
-                {
-                    bool test = false;
-                    IEnumerable<HtmlNode> descendants = goodNodes[i].Descendants();
-                    foreach (HtmlNode node in goodNodes)
-                    {
-                        if(descendants.Contains(node))
-                        {
-                            test = true;
-                            break;
-                        }
-                    }
-                    if (test)
-                    {
-                        goodNodes.RemoveAt(i);
-                    }
-                }
-                if(goodNodes.Count == 0)
-                {
-                    Posts[counter].Content = "AutoBLog Could not extract post content.";
-                }else
-                {
-                    Posts[counter].Content = goodNodes.First().OuterHtml;
-                }
+                NReadability.WebTranscodingInput input = new NReadability.WebTranscodingInput(url);
+
+                string page = new NReadability.NReadabilityWebTranscoder().Transcode(input).ExtractedContent;
+
+                HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(page);
+
+                //var title = doc.DocumentNode.SelectSingleNode("//title").InnerText;
+                //var imgUrl = doc.DocumentNode.SelectSingleNode("//meta[@property='og:image']").Attributes["content"].Value;
+                Posts[counter].Content = doc.DocumentNode.SelectSingleNode("//div[@id='readInner']").InnerHtml;
+
                 counter++;
             }   
         }

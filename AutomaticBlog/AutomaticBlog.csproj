@@ -55,6 +55,14 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\..\AdCentersScrabber\AdCentersScrabber\AdCentersScrabber\bin\Debug\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="NReadability, Version=1.4.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NReadability.1.4.9\lib\NReadability.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SgmlReaderDll, Version=1.8.8.30578, Culture=neutral, PublicKeyToken=46b2db9ca481831b, processorArchitecture=MSIL">
+      <HintPath>packages\NReadability.1.4.9\lib\SgmlReaderDll.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -99,6 +107,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
