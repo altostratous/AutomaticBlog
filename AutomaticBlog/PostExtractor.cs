@@ -33,55 +33,58 @@ namespace AutomaticBlog
             foreach(RssItem item in reader.Items)
             {
                 AddUrl(item.Link);
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(item.Description);
                 Posts.Add(new Post()
                 {
-                    Abstract = item.Description,
+                    
+                    Abstract = doc.DocumentNode.InnerText,
                     Title = item.Title
                 });
             }
         }
         public void Process()
         {
-            List<string> htmls = new List<string>();
-            foreach(string url in urls)
+            int counter = 0;
+            foreach (string url in urls)
             {
-                htmls.Add(load(url));
-            }
-
-            //int minlength = htmls.Min(item => { return item.Length; });
-            //List<bool> matches = new List<bool>();
-            //for(int i = 0; i < minlength; i++)
-            //{
-            //    bool test = true;
-            //    for(int j = 1; j < htmls.Count; j++)
-            //    {
-            //        if(htmls[j][i]!=htmls[j - 1][i])
-            //        {
-            //            test = false;
-            //            break;
-            //        }
-            //    }
-            //    matches.Add(test);
-            //}
-            //for(int i = 1; i < matches.Count - 1; i++)
-            //{
-            //    if((matches[i - 1])&&(matches[i + 1]))
-            //    {
-            //        matches[i] = true;
-            //    }
-            //}
-            //int matchesCount = 0;
-            //foreach(bool match in matches)
-            //{
-            //    if (!match)
-            //        break;
-            //    matchesCount++;
-            //}
-
-            //for(int i = 0; i < htmls.Count; i++)
-            //{
-            //    Posts[i].Content = htmls[i].Substring(matchesCount);
-            //}
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(load(url));
+                IEnumerable<HtmlNode> nodes = doc.DocumentNode.DescendantsAndSelf();
+                List<HtmlNode> goodNodes = new List<HtmlNode>();
+                foreach(HtmlNode node in nodes)
+                {
+                    if (node.InnerText.Contains(Posts[counter].Abstract.Substring(0, 20)))
+                    {
+                        goodNodes.Add(node);
+                    }
+                }
+                for(int i = goodNodes.Count - 1; i >=0; i--)
+                {
+                    bool test = false;
+                    IEnumerable<HtmlNode> descendants = goodNodes[i].Descendants();
+                    foreach (HtmlNode node in goodNodes)
+                    {
+                        if(descendants.Contains(node))
+                        {
+                            test = true;
+                            break;
+                        }
+                    }
+                    if (test)
+                    {
+                        goodNodes.RemoveAt(i);
+                    }
+                }
+                if(goodNodes.Count == 0)
+                {
+                    Posts[counter].Content = "AutoBLog Could not extract post content.";
+                }else
+                {
+                    Posts[counter].Content = goodNodes.First().OuterHtml;
+                }
+                counter++;
+            }   
         }
 
         private string load(string url)

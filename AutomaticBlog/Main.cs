@@ -70,17 +70,21 @@ namespace AutomaticBlog
 
         private void fetchFeedsButton_Click(object sender, EventArgs e)
         {
+            int counter = 0;
+
             foreach(string feed in feeds.Keys)
             {
-                PostExtractor postExtractor = new PostExtractor();
-                postExtractor.AddUrlsFromRssFeed(feed);
-                postExtractor.Process();
-                foreach(Post post in postExtractor.Posts)
+                if (feedsCheckedListBox.CheckedIndices.Contains(counter))
                 {
-                    posts.Add(post);
-                    webView.Window.Evaluate("document.write('"+ post.Title +"<br>');");
-                    webView.Window.Evaluate("document.write('" + post.Content + "<br>');");
+                    PostExtractor postExtractor = new PostExtractor();
+                    postExtractor.AddUrlsFromRssFeed(feed);
+                    postExtractor.Process();
+                    foreach (Post post in postExtractor.Posts)
+                    {
+                        posts.Add(post);
+                    }
                 }
+                counter++;
             }
         }
     }
