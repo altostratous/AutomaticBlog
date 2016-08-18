@@ -20,6 +20,7 @@ namespace AutomaticBlog
         Dictionary<string, Blog> blogs;
         Scope scope;
         List<Post> posts;
+        int fetchSelectedFeedsCount = 0;
 
         public Main()
         {
@@ -68,24 +69,67 @@ namespace AutomaticBlog
             loadConfiguration("Config.xml");
         }
 
+        
         private void fetchFeedsButton_Click(object sender, EventArgs e)
         {
+            fetchBackgroundWorker.RunWorkerAsync();
+            fetchSelectedFeedsCount = feedsCheckedListBox.CheckedItems.Count;
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            if (fetchBackgroundWorker.IsBusy)
+            {
+                fetchBackgroundWorker.CancelAsync();
+            }
+            if(postBackgroundWorker.IsBusy )
+            {
+                postBackgroundWorker.CancelAsync();
+            }
+            log("Cancel.");
+        }
+
+        private void log(string toLog)
+        {
+            logListBox.BeginInvoke(new Action(delegate {
+                logListBox.Items.Add(toLog);
+            }));
+        }
+
+        private void fetchBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            fetchBackgroundWorker.ReportProgress(0);   
             int counter = 0;
 
-            foreach(string feed in feeds.Keys)
+            foreach (string feed in feeds.Keys)
             {
                 if (feedsCheckedListBox.CheckedIndices.Contains(counter))
                 {
                     PostExtractor postExtractor = new PostExtractor();
+                    if (fetchBackgroundWorker.CancellationPending)
+                        return;
+                    log("Fetching urls from feed: " + feed);
                     postExtractor.AddUrlsFromRssFeed(feed);
+                    if (fetchBackgroundWorker.CancellationPending)
+                        return;
+                    log("Processing posts from feed: " + feed);
                     postExtractor.Process();
                     foreach (Post post in postExtractor.Posts)
                     {
                         posts.Add(post);
                     }
+                    log("Added posts to memory from " + feed);
                 }
                 counter++;
+                fetchBackgroundWorker.ReportProgress(100 * counter / fetchSelectedFeedsCount);
             }
+        }
+
+        private void fetchBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar.BeginInvoke(new Action(delegate {
+                progressBar.Value = e.ProgressPercentage;
+            }));
         }
     }
 }

@@ -37,6 +37,8 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
             this.logListBox = new System.Windows.Forms.ListBox();
+            this.fetchBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.postBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // webView
@@ -103,6 +105,7 @@
             this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // reloadButton
             // 
@@ -122,6 +125,18 @@
             this.logListBox.Name = "logListBox";
             this.logListBox.Size = new System.Drawing.Size(293, 95);
             this.logListBox.TabIndex = 9;
+            // 
+            // fetchBackgroundWorker
+            // 
+            this.fetchBackgroundWorker.WorkerReportsProgress = true;
+            this.fetchBackgroundWorker.WorkerSupportsCancellation = true;
+            this.fetchBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.fetchBackgroundWorker_DoWork);
+            this.fetchBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.fetchBackgroundWorker_ProgressChanged);
+            // 
+            // postBackgroundWorker
+            // 
+            this.postBackgroundWorker.WorkerReportsProgress = true;
+            this.postBackgroundWorker.WorkerSupportsCancellation = true;
             // 
             // Main
             // 
@@ -154,6 +169,8 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button reloadButton;
         private System.Windows.Forms.ListBox logListBox;
+        private System.ComponentModel.BackgroundWorker fetchBackgroundWorker;
+        private System.ComponentModel.BackgroundWorker postBackgroundWorker;
     }
 }
 
