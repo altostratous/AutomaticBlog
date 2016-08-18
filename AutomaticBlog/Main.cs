@@ -33,6 +33,13 @@ namespace AutomaticBlog
             blogs = new Dictionary<string, Blog>();
             posts = new List<Post>();
             loadConfiguration("Config.xml");
+            // just for test
+            posts.Add(new Post()
+            {
+                 Title = "dsfa",
+                 Content = "d",
+                 Abstract = "d"
+            });
         }
 
         private void loadConfiguration(string confFileName)

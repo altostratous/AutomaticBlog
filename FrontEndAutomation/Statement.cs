@@ -10,5 +10,6 @@ namespace FrontEndAutomation
     {
         Scope Scope { get; set; }
         object Process(Executor executor);
+        string Name { get; set; }
     }
 }

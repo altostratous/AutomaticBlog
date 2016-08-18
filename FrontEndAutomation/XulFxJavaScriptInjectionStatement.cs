@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 using Gecko;
 using Gecko.DOM;
 using System.IO;
+using System.Xml;
 
 namespace FrontEndAutomation
 {
     public class XulFxJavaScriptInjectionStatement : Statement
     {
+        public XulFxJavaScriptInjectionStatement(string name, XmlNode xmlContent)
+        {
+            Name = name;
+            throw new NotImplementedException();
+        }
+        public XulFxJavaScriptInjectionStatement() { }
+        public string Name { get; set; }
         public string FileName { get; set; }
 
         public Scope Scope

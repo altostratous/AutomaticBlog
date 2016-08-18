@@ -11,7 +11,18 @@ namespace FrontEndAutomation
     {
         public Statement Compile(XmlDocument doc)
         {
-            throw new NotImplementedException();
+            return Compile(doc.DocumentElement);
+        }
+
+        private Statement Compile(XmlElement documentElement)
+        {
+            Statement statement = (Statement)Activator.CreateInstance(Type.GetType(documentElement.Attributes.GetNamedItem("class").InnerText), new object[] { documentElement.Name, documentElement as XmlNode });
+            return statement;
+        }
+        private Statement Compile(XmlNode documentElement)
+        {
+            Statement statement = (Statement)Activator.CreateInstance(Type.GetType(documentElement.Attributes.GetNamedItem("class").InnerText), new object[] { documentElement.Name, documentElement as XmlNode });
+            return statement;
         }
         public Statement Compile(string path)
         {
