@@ -95,6 +95,7 @@
             this.postFeedsButton.TabIndex = 6;
             this.postFeedsButton.Text = "Post Feeds";
             this.postFeedsButton.UseVisualStyleBackColor = true;
+            this.postFeedsButton.Click += new System.EventHandler(this.postFeedsButton_Click);
             // 
             // cancelButton
             // 
@@ -131,12 +132,16 @@
             this.fetchBackgroundWorker.WorkerReportsProgress = true;
             this.fetchBackgroundWorker.WorkerSupportsCancellation = true;
             this.fetchBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.fetchBackgroundWorker_DoWork);
-            this.fetchBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.fetchBackgroundWorker_ProgressChanged);
+            this.fetchBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.fetchBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.fetchBackgroundWorker_RunWorkerCompleted);
             // 
             // postBackgroundWorker
             // 
             this.postBackgroundWorker.WorkerReportsProgress = true;
             this.postBackgroundWorker.WorkerSupportsCancellation = true;
+            this.postBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.postBackgroundWorker_DoWork);
+            this.postBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.postBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.postBackgroundWorker_RunWorkerCompleted);
             // 
             // Main
             // 

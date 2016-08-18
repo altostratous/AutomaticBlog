@@ -21,11 +21,13 @@ namespace AutomaticBlog
         Scope scope;
         List<Post> posts;
         int fetchSelectedFeedsCount = 0;
+        int postsToPostCount = 0;
 
         public Main()
         {
             Gecko.Xpcom.Initialize(Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) , "xulrunner"));
             InitializeComponent();
+            executor = new XulFxExecutor(scope, null, webView.Window);
             scope = new Scope(null);
             feeds = new Dictionary<string, string>();
             blogs = new Dictionary<string, Blog>();
@@ -100,18 +102,24 @@ namespace AutomaticBlog
         {
             fetchBackgroundWorker.ReportProgress(0);   
             int counter = 0;
-
+            int overalCounter = 0;
             foreach (string feed in feeds.Keys)
             {
-                if (feedsCheckedListBox.CheckedIndices.Contains(counter))
+                if (feedsCheckedListBox.CheckedIndices.Contains(overalCounter))
                 {
                     PostExtractor postExtractor = new PostExtractor();
                     if (fetchBackgroundWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
                         return;
+                    }
                     log("Fetching urls from feed: " + feed);
                     postExtractor.AddUrlsFromRssFeed(feed);
                     if (fetchBackgroundWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
                         return;
+                    }
                     log("Processing posts from feed: " + feed);
                     postExtractor.Process();
                     foreach (Post post in postExtractor.Posts)
@@ -119,17 +127,75 @@ namespace AutomaticBlog
                         posts.Add(post);
                     }
                     log("Added posts to memory from " + feed);
+                    counter++;
+                    fetchBackgroundWorker.ReportProgress(100 * counter / fetchSelectedFeedsCount);
                 }
-                counter++;
-                fetchBackgroundWorker.ReportProgress(100 * counter / fetchSelectedFeedsCount);
+                overalCounter++;
             }
         }
 
-        private void fetchBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar.BeginInvoke(new Action(delegate {
                 progressBar.Value = e.ProgressPercentage;
             }));
+        }
+
+        private void postBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // posting in blogs
+            postBackgroundWorker.ReportProgress(0);
+            int counter = 0;
+            int overalCounter = 0;
+            foreach (string blogUrl in blogs.Keys)
+            {
+                if (blogsCheckListBox.CheckedIndices.Contains(overalCounter))
+                {
+                    BlogPoster poster = new BlogPoster(blogs[blogUrl], executor);
+                    poster.Login();
+                    foreach(Post post in posts)
+                    {
+                        if (postBackgroundWorker.CancellationPending)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                        poster.Post(post);
+                        counter++;
+                        postBackgroundWorker.ReportProgress(100 * counter / postsToPostCount);
+                    }
+                    
+                }
+                overalCounter++;
+            }
+        }
+
+        private void postBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                log("Posting cancelled.");
+            }
+            else {
+                log("Completed posting.");
+            }
+        }
+
+        private void fetchBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                log("Fetching cancelled.");
+            }
+            else {
+                log("Completed fetching.");
+            }
+        }
+
+        private void postFeedsButton_Click(object sender, EventArgs e)
+        {
+            postsToPostCount = posts.Count * blogsCheckListBox.CheckedIndices.Count;
+            postBackgroundWorker.RunWorkerAsync();
         }
     }
 }

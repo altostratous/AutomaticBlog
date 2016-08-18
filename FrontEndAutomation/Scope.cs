@@ -3,24 +3,23 @@
 namespace FrontEndAutomation
 {
     public class Scope
-    {
-        private Dictionary<string, object> variables;
-        
+    {        
         public Scope Parent { get; set; }
+        public Dictionary<string, string> Variables { get;  set; }
 
         public Scope(Scope parent)
         {
-            variables = new Dictionary<string, object>();
+            Variables = new Dictionary<string, string>();
         }
 
         public object Resolve(string name)
         {
-            return variables[name];
+            return Variables[name];
         }
 
-        public void Set(string name, object value)
+        public void Set(string name, string value)
         {
-            variables[name] = value;
+            Variables[name] = value;
         }
     }
 }
