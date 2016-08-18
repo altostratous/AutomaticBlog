@@ -36,6 +36,7 @@
             this.postFeedsButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
+            this.logListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // webView
@@ -45,13 +46,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webView.Location = new System.Drawing.Point(309, 12);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(600, 423);
+            this.webView.Size = new System.Drawing.Size(600, 415);
             this.webView.TabIndex = 0;
             // 
             // progressBar
             // 
             this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.progressBar.Location = new System.Drawing.Point(10, 383);
+            this.progressBar.Location = new System.Drawing.Point(10, 375);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(293, 23);
             this.progressBar.TabIndex = 2;
@@ -59,7 +60,7 @@
             // fetchFeedsButton
             // 
             this.fetchFeedsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.fetchFeedsButton.Location = new System.Drawing.Point(10, 412);
+            this.fetchFeedsButton.Location = new System.Drawing.Point(10, 404);
             this.fetchFeedsButton.Name = "fetchFeedsButton";
             this.fetchFeedsButton.Size = new System.Drawing.Size(78, 23);
             this.fetchFeedsButton.TabIndex = 3;
@@ -72,23 +73,21 @@
             this.feedsCheckedListBox.FormattingEnabled = true;
             this.feedsCheckedListBox.Location = new System.Drawing.Point(10, 12);
             this.feedsCheckedListBox.Name = "feedsCheckedListBox";
-            this.feedsCheckedListBox.Size = new System.Drawing.Size(293, 154);
+            this.feedsCheckedListBox.Size = new System.Drawing.Size(293, 124);
             this.feedsCheckedListBox.TabIndex = 4;
             // 
             // blogsCheckListBox
             // 
-            this.blogsCheckListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.blogsCheckListBox.FormattingEnabled = true;
-            this.blogsCheckListBox.Location = new System.Drawing.Point(10, 172);
+            this.blogsCheckListBox.Location = new System.Drawing.Point(10, 142);
             this.blogsCheckListBox.Name = "blogsCheckListBox";
-            this.blogsCheckListBox.Size = new System.Drawing.Size(293, 199);
+            this.blogsCheckListBox.Size = new System.Drawing.Size(293, 124);
             this.blogsCheckListBox.TabIndex = 5;
             // 
             // postFeedsButton
             // 
             this.postFeedsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.postFeedsButton.Location = new System.Drawing.Point(94, 412);
+            this.postFeedsButton.Location = new System.Drawing.Point(94, 404);
             this.postFeedsButton.Name = "postFeedsButton";
             this.postFeedsButton.Size = new System.Drawing.Size(78, 23);
             this.postFeedsButton.TabIndex = 6;
@@ -98,7 +97,7 @@
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancelButton.Location = new System.Drawing.Point(242, 412);
+            this.cancelButton.Location = new System.Drawing.Point(242, 404);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(61, 23);
             this.cancelButton.TabIndex = 7;
@@ -108,7 +107,7 @@
             // reloadButton
             // 
             this.reloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.reloadButton.Location = new System.Drawing.Point(178, 412);
+            this.reloadButton.Location = new System.Drawing.Point(178, 404);
             this.reloadButton.Name = "reloadButton";
             this.reloadButton.Size = new System.Drawing.Size(58, 23);
             this.reloadButton.TabIndex = 8;
@@ -116,11 +115,20 @@
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.reloadButton_Click);
             // 
+            // logListBox
+            // 
+            this.logListBox.FormattingEnabled = true;
+            this.logListBox.Location = new System.Drawing.Point(10, 273);
+            this.logListBox.Name = "logListBox";
+            this.logListBox.Size = new System.Drawing.Size(293, 95);
+            this.logListBox.TabIndex = 9;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 447);
+            this.ClientSize = new System.Drawing.Size(921, 439);
+            this.Controls.Add(this.logListBox);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.postFeedsButton);
@@ -145,6 +153,7 @@
         private System.Windows.Forms.Button postFeedsButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button reloadButton;
+        private System.Windows.Forms.ListBox logListBox;
     }
 }
 
