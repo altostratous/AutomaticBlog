@@ -65,6 +65,7 @@
             this.fetchFeedsButton.TabIndex = 3;
             this.fetchFeedsButton.Text = "Fetch Feeds";
             this.fetchFeedsButton.UseVisualStyleBackColor = true;
+            this.fetchFeedsButton.Click += new System.EventHandler(this.fetchFeedsButton_Click);
             // 
             // feedsCheckedListBox
             // 

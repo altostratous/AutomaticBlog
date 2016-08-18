@@ -19,6 +19,7 @@ namespace AutomaticBlog
         Dictionary<string, string> feeds;
         Dictionary<string, Blog> blogs;
         Scope scope;
+        List<Post> posts;
 
         public Main()
         {
@@ -27,6 +28,7 @@ namespace AutomaticBlog
             scope = new Scope(null);
             feeds = new Dictionary<string, string>();
             blogs = new Dictionary<string, Blog>();
+            posts = new List<Post>();
             loadConfiguration("Config.xml");
         }
 
@@ -64,6 +66,22 @@ namespace AutomaticBlog
         private void reloadButton_Click(object sender, EventArgs e)
         {
             loadConfiguration("Config.xml");
+        }
+
+        private void fetchFeedsButton_Click(object sender, EventArgs e)
+        {
+            foreach(string feed in feeds.Keys)
+            {
+                PostExtractor postExtractor = new PostExtractor();
+                postExtractor.AddUrlsFromRssFeed(feed);
+                postExtractor.Process();
+                foreach(Post post in postExtractor.Posts)
+                {
+                    posts.Add(post);
+                    webView.Window.Evaluate("document.write('"+ post.Title +"<br>');");
+                    webView.Window.Evaluate("document.write('" + post.Content + "<br>');");
+                }
+            }
         }
     }
 }
