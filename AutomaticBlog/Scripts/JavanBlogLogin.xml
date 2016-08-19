@@ -9,11 +9,17 @@
     </Script>
   </goToLoginPage>
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
-    <Condition>$('#login').length != 1</Condition>
+    <Condition>($('#login').length != 1)</Condition>
   </waitWhileLogin>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
-      $('#username').val($('#FrontEndAutomation.username').html());
+      $('#username').val($('#FrontEndAutomation_username').html());
+      $('#password').val($('#FrontEndAutomation_password').html());
+      $('#login').trigger('click');
     </Script>
   </enterLogin>
+
+  <waitWhileLoginComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('input[name=submit]').length != 1)</Condition>
+  </waitWhileLoginComplete>
 </login>

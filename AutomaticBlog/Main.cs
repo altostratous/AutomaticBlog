@@ -102,7 +102,11 @@ namespace AutomaticBlog
         private void log(string toLog)
         {
             logListBox.BeginInvoke(new Action(delegate {
-                logListBox.Items.Add(toLog);
+                if (toLog != null)
+                    logListBox.Items.Add(toLog);
+                else
+                    logListBox.Items.Add("null");
+                logListBox.TopIndex = logListBox.Items.Count - 1;
             }));
         }
 
@@ -209,6 +213,21 @@ namespace AutomaticBlog
         {
             postsToPostCount = posts.Count * blogsCheckListBox.CheckedIndices.Count;
             postBackgroundWorker.RunWorkerAsync();
+        }
+
+        private void consoleTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == 13)
+            {
+                try {
+                    log(webView.Window.Evaluate(consoleTextBox.Text));
+                }
+                catch (Exception ex)
+                {
+                    log(ex.Message);
+                }
+                consoleTextBox.Text = "";
+            }
         }
     }
 }

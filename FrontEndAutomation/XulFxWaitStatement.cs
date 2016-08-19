@@ -22,6 +22,8 @@ namespace FrontEndAutomation
             while (executor.Execute(Condition).ToString().Equals("True"))
             {
                 System.Threading.Thread.Sleep(Common.WAIT_INTERVAL);
+                Gecko.Xpcom.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
             return null;
         }

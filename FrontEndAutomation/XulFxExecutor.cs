@@ -21,22 +21,47 @@ namespace FrontEndAutomation
         {
             if(DoEventsBeforeExecute)
                 Gecko.Xpcom.DoEvents();
+            SetVariables();
             object res = Window.Evaluate(code);
+            GetVariables();
             return res;
+        }
+
+        private void GetVariables()
+        {
+            GeckoNode head = Window.Document.GetElementsByTagName("body")[0];
+            GeckoNode varsNode = Window.Document.GetElementById("variables_div");
+            Scope.Variables.Clear();
+            if (varsNode != null)
+            {
+                foreach(GeckoNode node in varsNode.ChildNodes)
+                {
+                    GeckoHTMLElement htmlEl = ((GeckoHTMLElement)node);
+                    Scope.Variables.Add(htmlEl.Id.Substring("FrontEndAutomation_".Length), htmlEl.InnerHtml);
+                }
+            }
         }
 
         public override void SetVariables()
         {
-            GeckoNode head = Window.Document.GetElementsByTagName("head")[0];
-            GeckoElement scriptEl = Window.Document.CreateElement("variables");
-            foreach(string variable in Scope.Variables.Keys)
+            GeckoNode head = Window.Document.GetElementsByTagName("body")[0];
+            GeckoNode varsNode = Window.Document.GetElementById("variables_div");
+            if (varsNode != null)
+                varsNode.ParentNode.RemoveChild(varsNode);
+            GeckoElement scriptEl = Window.Document.CreateElement("div");
+            foreach (string variable in Scope.Variables.Keys)
             {
-                GeckoElement varEl = Window.Document.CreateElement("variable");
-                varEl.SetAttribute("id", "FrontEndAutomation." + variable);
+                GeckoElement varEl = Window.Document.CreateElement("div");
+                varEl.SetAttribute("id", "FrontEndAutomation_" + variable);
                 varEl.TextContent = Scope.Variables[variable];
                 scriptEl.AppendChild(varEl);
             }
+            scriptEl.SetAttribute("id", "variables_div");
             head.AppendChild(scriptEl);
+            //foreach (string variable in Scope.Variables.Keys)
+            //{
+            //    Window.Evaluate("var " + variable + " = '" +Scope.Variables[variable] + "';");
+            //}
         }
     }
 }

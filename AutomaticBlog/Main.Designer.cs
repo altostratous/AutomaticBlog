@@ -39,6 +39,7 @@
             this.logListBox = new System.Windows.Forms.ListBox();
             this.fetchBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.postBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.consoleTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // webView
@@ -48,7 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webView.Location = new System.Drawing.Point(309, 12);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(600, 415);
+            this.webView.Size = new System.Drawing.Size(604, 386);
             this.webView.TabIndex = 0;
             // 
             // progressBar
@@ -143,11 +144,22 @@
             this.postBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.postBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.postBackgroundWorker_RunWorkerCompleted);
             // 
+            // consoleTextBox
+            // 
+            this.consoleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.consoleTextBox.Location = new System.Drawing.Point(309, 406);
+            this.consoleTextBox.Name = "consoleTextBox";
+            this.consoleTextBox.Size = new System.Drawing.Size(604, 20);
+            this.consoleTextBox.TabIndex = 10;
+            this.consoleTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.consoleTextBox_KeyPress);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 439);
+            this.ClientSize = new System.Drawing.Size(925, 439);
+            this.Controls.Add(this.consoleTextBox);
             this.Controls.Add(this.logListBox);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.cancelButton);
@@ -160,6 +172,7 @@
             this.Name = "Main";
             this.Text = "Automatic Blog";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -176,6 +189,7 @@
         private System.Windows.Forms.ListBox logListBox;
         private System.ComponentModel.BackgroundWorker fetchBackgroundWorker;
         private System.ComponentModel.BackgroundWorker postBackgroundWorker;
+        private System.Windows.Forms.TextBox consoleTextBox;
     }
 }
 
