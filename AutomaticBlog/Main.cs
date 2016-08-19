@@ -27,6 +27,7 @@ namespace AutomaticBlog
         {
             Gecko.Xpcom.Initialize(Path.Combine(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) , "xulrunner"));
             InitializeComponent();
+            scope = new Scope(null);
             executor = new XulFxExecutor(scope, null, webView.Window);
             scope = new Scope(null);
             feeds = new Dictionary<string, string>();
@@ -159,7 +160,10 @@ namespace AutomaticBlog
                 if (blogsCheckListBox.CheckedIndices.Contains(overalCounter))
                 {
                     BlogPoster poster = new BlogPoster(blogs[blogUrl], executor);
-                    poster.Login();
+                    webView.Invoke(new Action(delegate
+                    {
+                        poster.Login();
+                    }));
                     foreach(Post post in posts)
                     {
                         if (postBackgroundWorker.CancellationPending)
@@ -167,7 +171,9 @@ namespace AutomaticBlog
                             e.Cancel = true;
                             return;
                         }
-                        poster.Post(post);
+                        webView.Invoke(new Action(delegate {
+                            poster.Post(post);
+                        }));
                         counter++;
                         postBackgroundWorker.ReportProgress(100 * counter / postsToPostCount);
                     }
