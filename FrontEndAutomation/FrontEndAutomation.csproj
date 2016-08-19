@@ -64,14 +64,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="Compiler.cs" />
     <Compile Include="Executor.cs" />
+    <Compile Include="FunctionStatement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scope.cs" />
     <Compile Include="Statement.cs" />
     <Compile Include="XulFxExecutor.cs" />
     <Compile Include="XulFxJavaScriptInjectionStatement.cs" />
     <Compile Include="XulFxJavaScriptStatement.cs" />
+    <Compile Include="XulFxWaitStatement.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

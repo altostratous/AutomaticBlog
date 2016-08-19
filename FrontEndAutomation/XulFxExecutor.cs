@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gecko.DOM;
+using Gecko;
 
 namespace FrontEndAutomation
 {
@@ -14,13 +15,28 @@ namespace FrontEndAutomation
         public XulFxExecutor (Scope scope, Statement statement, GeckoWindow window) : base (scope, statement)
         {
             Window = window;
-            DoEventsBeforeExecute = false;
+            DoEventsBeforeExecute = true;
         }
         public override object Execute(string code)
         {
             if(DoEventsBeforeExecute)
                 Gecko.Xpcom.DoEvents();
-            return Window.Evaluate(code);
+            object res = Window.Evaluate(code);
+            return res;
+        }
+
+        public override void SetVariables()
+        {
+            GeckoNode head = Window.Document.GetElementsByTagName("head")[0];
+            GeckoElement scriptEl = Window.Document.CreateElement("variables");
+            foreach(string variable in Scope.Variables.Keys)
+            {
+                GeckoElement varEl = Window.Document.CreateElement("variable");
+                varEl.SetAttribute("id", "FrontEndAutomation." + variable);
+                varEl.TextContent = Scope.Variables[variable];
+                scriptEl.AppendChild(varEl);
+            }
+            head.AppendChild(scriptEl);
         }
     }
 }

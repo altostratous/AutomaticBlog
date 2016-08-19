@@ -19,20 +19,23 @@ namespace FrontEndAutomation
 
         public object Execute()
         {
-            foreach(string variable in Scope.Variables.Keys)
-            {
-                Execute("ver " + variable + " = '"+ javaScriptifyString(Scope.Variables[variable]) +"';");
-            }
+            //foreach(string variable in Scope.Variables.Keys)
+            //{
+            //    Execute("ver " + variable + " = '" + javaScriptifyString(Scope.Variables[variable]) + "';");
+
+            //}
+            SetVariables();
             return Statement.Process(this);
         }
 
-        private string javaScriptifyString(string v)
-        {
-            return v
-                .Replace("\\", "\\\\")
-                .Replace("'", "\\'");
-        }
+        //private string javaScriptifyString(string v)
+        //{
+        //    return v
+        //        .Replace("\\", "\\\\")
+        //        .Replace("'", "\\'");
+        //}
 
+        public abstract void SetVariables();
         public abstract object Execute(string code);
     }
 }

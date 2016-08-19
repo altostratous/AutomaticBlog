@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+  <FileName>jquery-2.1.4.js</FileName>
+</injectScript>

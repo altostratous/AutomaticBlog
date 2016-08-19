@@ -1,4 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
-  <FileName>jquery-2.1.4.js</FileName>
-</injectScript>
+<login class="FrontEndAutomation.FunctionStatement">
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://javanblog.ir';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#login').length != 1</Condition>
+  </waitWhileLogin>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('#username').val($('#FrontEndAutomation.username').html());
+    </Script>
+  </enterLogin>
+</login>

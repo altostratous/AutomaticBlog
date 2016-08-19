@@ -8,7 +8,6 @@ namespace FrontEndAutomation
 {
     public interface Statement
     {
-        Scope Scope { get; set; }
         object Process(Executor executor);
         string Name { get; set; }
     }
