@@ -15,7 +15,7 @@ namespace FrontEndAutomation
         public XulFxJavaScriptInjectionStatement(string name, XmlNode xmlContent)
         {
             Name = name;
-            throw new NotImplementedException();
+            FileName = xmlContent["FileName"].InnerText;
         }
         public XulFxJavaScriptInjectionStatement() { }
         public string Name { get; set; }

@@ -12,7 +12,7 @@ namespace FrontEndAutomation
         public XulFxJavaScriptStatement(string name, XmlNode xmlContent)
         {
             Name = name;
-            throw new NotImplementedException();
+            Script = xmlContent["Script"].InnerText;
         }
         public XulFxJavaScriptStatement() { }
         public string Name { get; set; }
