@@ -44,24 +44,29 @@ namespace FrontEndAutomation
 
         public override void SetVariables()
         {
-            GeckoNode head = Window.Document.GetElementsByTagName("body")[0];
-            GeckoNode varsNode = Window.Document.GetElementById("variables_div");
-            if (varsNode != null)
-                varsNode.ParentNode.RemoveChild(varsNode);
-            GeckoElement scriptEl = Window.Document.CreateElement("div");
-            foreach (string variable in Scope.Variables.Keys)
+            try {
+                GeckoNode head = Window.Document.GetElementsByTagName("body")[0];
+                GeckoNode varsNode = Window.Document.GetElementById("variables_div");
+                if (varsNode != null)
+                    varsNode.ParentNode.RemoveChild(varsNode);
+                GeckoElement scriptEl = Window.Document.CreateElement("div");
+                foreach (string variable in Scope.Variables.Keys)
+                {
+                    GeckoElement varEl = Window.Document.CreateElement("div");
+                    varEl.SetAttribute("id", "FrontEndAutomation_" + variable);
+                    varEl.TextContent = Scope.Variables[variable];
+                    scriptEl.AppendChild(varEl);
+                }
+                scriptEl.SetAttribute("id", "variables_div");
+                head.AppendChild(scriptEl);
+                //foreach (string variable in Scope.Variables.Keys)
+                //{
+                //    Window.Evaluate("var " + variable + " = '" +Scope.Variables[variable] + "';");
+                //}
+            }catch(Exception ex)
             {
-                GeckoElement varEl = Window.Document.CreateElement("div");
-                varEl.SetAttribute("id", "FrontEndAutomation_" + variable);
-                varEl.TextContent = Scope.Variables[variable];
-                scriptEl.AppendChild(varEl);
+
             }
-            scriptEl.SetAttribute("id", "variables_div");
-            head.AppendChild(scriptEl);
-            //foreach (string variable in Scope.Variables.Keys)
-            //{
-            //    Window.Evaluate("var " + variable + " = '" +Scope.Variables[variable] + "';");
-            //}
         }
     }
 }

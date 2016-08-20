@@ -1,4 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
-  <FileName>jquery-2.1.4.js</FileName>
-</injectScript>
+<post class="FrontEndAutomation.FunctionStatement">
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('input[name=title]').val($('#FrontEndAutomation_title').html());
+      tinyMCE.getInstanceById('contents_noscript').getBody().innerHTML = $('#FrontEndAutomation_content').html();
+      $('input[name=submit]').trigger('click');
+    </Script>
+  </postContent>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('table.listTable').length == 0)</Condition>
+  </waitWhilePostComplete>
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://javanblog.ir/desktop/post.php';
+    </Script>
+  </goToLoginPage>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('input[name=submit]').length != 1</Condition>
+  </waitWhilePostComplete>
+</post>
