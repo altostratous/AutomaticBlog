@@ -52,9 +52,9 @@ namespace FrontEndAutomation
                 GeckoElement scriptEl = Window.Document.CreateElement("div");
                 foreach (string variable in Scope.Variables.Keys)
                 {
-                    GeckoElement varEl = Window.Document.CreateElement("div");
+                    GeckoHTMLElement varEl = (GeckoHTMLElement)Window.Document.CreateElement("div");
                     varEl.SetAttribute("id", "FrontEndAutomation_" + variable);
-                    varEl.TextContent = Scope.Variables[variable];
+                    varEl.InnerHtml = Scope.Variables[variable];
                     scriptEl.AppendChild(varEl);
                 }
                 scriptEl.SetAttribute("id", "variables_div");

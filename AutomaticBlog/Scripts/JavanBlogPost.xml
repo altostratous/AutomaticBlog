@@ -3,7 +3,8 @@
   <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
       $('input[name=title]').val($('#FrontEndAutomation_title').html());
-      tinyMCE.getInstanceById('contents_noscript').getBody().innerHTML = $('#FrontEndAutomation_content').html();
+      // tinyMCE.getInstanceById('contents_noscript').getBody().innerHTML = $('#FrontEndAutomation_content').html();
+      tinyMCE.getInstanceById('contents_noscript').setContent($('#FrontEndAutomation_content').html() , {format : 'raw'});
       $('input[name=submit]').trigger('click');
     </Script>
   </postContent>
