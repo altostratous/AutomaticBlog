@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<post class="FrontEndAutomation.FunctionStatement">
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://' + $('#FrontEndAutomation_username').html() + '.loxblog.com/admin.php#purchasing';
+    </Script>
+  </goToLoginPage>
+
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#link1').length == 0</Condition>
+  </waitWhilePostComplete>
+  <clickAddPost class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = $('a:contains("ارسال مطلب جدید")').attr('href');
+    </Script>
+  </clickAddPost>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof tinyMCE !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <!--<postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('#dfgfgf')[0].click();
+    </Script>
+  </postContent>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#ntex2').length == 0</Condition>
+  </waitWhilePostComplete>-->
+
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('input[name=mtitle]').val($('#FrontEndAutomation_title').html());
+      //tinyMCE.getInstanceById('mtex').setContent($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      //$('#linkextended').trigger('click');
+      //tinyMCE.getInstanceById('mtex2').setContent($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      $('#mtex2').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      $('input[type=submit]')[0].click();
+    </Script>
+  </postContent>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('font:contains("ارسال مطلب جدید")').length == 0)</Condition>
+  </waitWhilePostComplete>
+</post>

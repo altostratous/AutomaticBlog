@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<login class="FrontEndAutomation.FunctionStatement">
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://' + $('#FrontEndAutomation_username').html() + '.loxblog.com/vorod/';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>document.getElementsByTagName("input").length != 4</Condition>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('input[name=usern]').val($('#FrontEndAutomation_username').html());
+      $('input[name=passw]').val($('#FrontEndAutomation_password').html());
+      // $('input.submit').trigger('click');
+    </Script>
+  </enterLogin>
+
+  <waitWhileLoginComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>window.location.href != 'http://' + document.getElementById('FrontEndAutomation_username').innerHTML + '.loxblog.com/admin.php#purchasing'</Condition>
+  </waitWhileLoginComplete>
+
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>20</Count>
+  </goToLoginPage>
+</login>

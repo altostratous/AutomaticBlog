@@ -23,7 +23,7 @@ namespace FrontEndAutomation
             {
                 System.Threading.Thread.Sleep(Common.WAIT_INTERVAL);
                 Gecko.Xpcom.DoEvents();
-                //System.Windows.Forms.Application.DoEvents();
+                System.Windows.Forms.Application.DoEvents();
             }
             return null;
         }

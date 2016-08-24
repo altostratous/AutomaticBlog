@@ -37,10 +37,20 @@ namespace FrontEndAutomation
         public object Process(Executor executor)
         {
             executor.Scope.Set(Name, null);
+            Exception ex = null;
             foreach(Statement statement in statements)
             {
-                statement.Process(executor);
+                //try {
+                    statement.Process(executor);
+                //}
+                //catch(Exception e)
+                //{
+                //    ex = e;
+                //}
+                //Console.WriteLine(statement.ToString());
             }
+            //if (ex != null)
+            //    throw ex;
             return executor.Scope.Resolve(Name);
         }
     }

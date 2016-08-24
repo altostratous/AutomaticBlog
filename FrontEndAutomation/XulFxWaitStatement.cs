@@ -19,11 +19,22 @@ namespace FrontEndAutomation
         
         public object Process(Executor executor)
         {
-            while (executor.Execute(Condition).ToString().Equals("True"))
+            while (true)
             {
+                try {
+                    if (!executor.Execute(Condition).ToString().Equals("True"))
+                        break;
+                }catch(Exception ex)
+                {
+                }
                 System.Threading.Thread.Sleep(Common.WAIT_INTERVAL);
-                Gecko.Xpcom.DoEvents();
-                //System.Windows.Forms.Application.DoEvents();
+
+                for (int i = 0; i < 5; i++)
+                {
+                    Gecko.Xpcom.DoEvents(true);
+                    Gecko.Xpcom.DoEvents();
+                    System.Windows.Forms.Application.DoEvents();
+                }
             }
             return null;
         }

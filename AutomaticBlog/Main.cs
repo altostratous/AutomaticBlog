@@ -167,12 +167,13 @@ namespace AutomaticBlog
                     BlogPoster poster = new BlogPoster(blogs[blogUrl], executor);
                     webView.Invoke(new Action(delegate
                     {
-                        try {
-                            poster.Login();
-                        }catch(Exception ex)
-                        {
-                            log(ex.Message);
-                        }
+                        //try {
+                        //    poster.Login();
+                        //}catch(Exception ex)
+                        //{
+                        //    log(ex.Message);
+                        //}
+                        poster.Login();
                     }));
                     foreach(Post post in posts)
                     {
@@ -182,14 +183,15 @@ namespace AutomaticBlog
                             return;
                         }
                         webView.Invoke(new Action(delegate {
-                            try
-                            {
-                                poster.Post(post);
-                            }
-                            catch (Exception ex)
-                            {
-                                log(ex.Message);
-                            }
+                            //try
+                            //{
+                            //    poster.Post(post);
+                            //}
+                            //catch (Exception ex)
+                            //{
+                            //    log(ex.Message);
+                            //}
+                            poster.Post(post);
                         }));
                         counter++;
                         postBackgroundWorker.ReportProgress(100 * counter / postsToPostCount);

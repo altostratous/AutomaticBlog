@@ -19,8 +19,8 @@ namespace FrontEndAutomation
         }
         public override object Execute(string code)
         {
-            if(DoEventsBeforeExecute)
-                Gecko.Xpcom.DoEvents();
+            //if(DoEventsBeforeExecute)
+            //    Gecko.Xpcom.DoEvents();
             SetVariables();
             object res = Window.Evaluate(code);
             GetVariables();
@@ -29,7 +29,12 @@ namespace FrontEndAutomation
 
         private void GetVariables()
         {
-            GeckoNode head = Window.Document.GetElementsByTagName("body")[0];
+            try {
+                GeckoNode head = Window.Document.GetElementsByTagName("body")[0];
+            } catch(Exception ex)
+            {
+                return;
+            }
             GeckoNode varsNode = Window.Document.GetElementById("variables_div");
             Scope.Variables.Clear();
             if (varsNode != null)

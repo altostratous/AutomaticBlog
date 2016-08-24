@@ -30,5 +30,12 @@
       <login>Scripts/LineBlogLogin.xml</login>
       <post>Scripts/LineBlogPost.xml</post>
     </blog>
+    <blog>
+      <url>http://alto.loxblog.com/</url>
+      <username>alto</username>
+      <password>poorpoor</password>
+      <login>Scripts/LoxBlogLogin.xml</login>
+      <post>Scripts/LoxBlogPost.xml</post>
+    </blog>
   </blogs>
 </config>
