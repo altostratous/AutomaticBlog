@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<post class="FrontEndAutomation.FunctionStatement">
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://lineblog.ir/action.php';
+    </Script>
+  </goToLoginPage>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('img[src$="images/action/post.png"]').length == 0</Condition>
+  </waitWhilePostComplete>
+  <clickAddPost class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('img[src$="images/action/post.png"]').trigger('click');
+    </Script>
+  </clickAddPost>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $('#dfgfgf')[0] !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#dfgfgf').length != 1</Condition>
+  </waitWhilePostComplete>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('#dfgfgf')[0].click();
+    </Script>
+  </postContent>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#mtex2').length == 0</Condition>
+  </waitWhilePostComplete>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      //$('#dfgfgf')[0].click();
+      $('#mtitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      $('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      //$('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      //$('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      $('input[type=submit]')[0].click();
+    </Script>
+  </postContent>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('div.title').length == 0)</Condition>
+  </waitWhilePostComplete>-->
+</post>

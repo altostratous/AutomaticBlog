@@ -75,6 +75,7 @@
     <Compile Include="XulFxExecutor.cs" />
     <Compile Include="XulFxJavaScriptInjectionStatement.cs" />
     <Compile Include="XulFxJavaScriptStatement.cs" />
+    <Compile Include="XulFxWaitForAWhileStatement.cs" />
     <Compile Include="XulFxWaitStatement.cs" />
   </ItemGroup>
   <ItemGroup />

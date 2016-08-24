@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<login class="FrontEndAutomation.FunctionStatement">
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://lineblog.ir/login';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>document.getElementsByTagName("input").length != 3</Condition>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('input[name=usern]').val($('#FrontEndAutomation_username').html());
+      $('input[name=passw]').val($('#FrontEndAutomation_password').html());
+      //$('input[type=submit]').trigger('click');
+      $('input[type=submit]')[0].click();
+    </Script>
+  </enterLogin>
+
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>20</Count>
+  </goToLoginPage>
+  
+</login>

@@ -23,5 +23,12 @@
       <login>Scripts/AvaBlogLogin.xml</login>
       <post>Scripts/AvaBlogPost.xml</post>
     </blog>
+    <blog>
+      <url>http://alto.linelog.ir/</url>
+      <username>alto</username>
+      <password>poorpoor</password>
+      <login>Scripts/LineBlogLogin.xml</login>
+      <post>Scripts/LineBlogPost.xml</post>
+    </blog>
   </blogs>
 </config>
