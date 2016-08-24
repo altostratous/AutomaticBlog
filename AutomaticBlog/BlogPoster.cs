@@ -28,6 +28,7 @@ namespace AutomaticBlog
             executor.Scope.Set("title", post.Title);
             executor.Scope.Set("abstract", post.Abstract);
             executor.Scope.Set("content", post.Content);
+            executor.Scope.Set("readmore", post.ReadMore);
             executor.Execute();
         }
     }
