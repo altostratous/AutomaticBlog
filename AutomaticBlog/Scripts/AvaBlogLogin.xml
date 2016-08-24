@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<login class="FrontEndAutomation.FunctionStatement">
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://avablog.ir/login.php';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>document.getElementsByTagName("input").length != 3</Condition>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('input.inputuser').val($('#FrontEndAutomation_username').html());
+      $('input.inputpass').val($('#FrontEndAutomation_password').html());
+      $('input.submit').trigger('click');
+    </Script>
+  </enterLogin>
+
+  <waitWhileLoginComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('input[name=submit]').length != 1)</Condition>
+  </waitWhileLoginComplete>
+</login>

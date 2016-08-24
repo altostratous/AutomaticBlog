@@ -34,6 +34,14 @@ namespace AutomaticBlog
             blogs = new Dictionary<string, Blog>();
             posts = new List<Post>();
             loadConfiguration("Config.xml");
+
+            // for test 
+            posts.Add(new Post() {
+                Title = "hsh",
+                Abstract = "hsdhl",
+                Content = "sdkfj",
+                ReadMore = "dljgas"
+            });
         }
 
         private void loadConfiguration(string confFileName)
@@ -47,7 +55,7 @@ namespace AutomaticBlog
             foreach(XmlNode node in feedNodes)
             {
                 string url = node["url"].InnerText;
-                string script = node["script"].InnerText;
+                string script = "";
                 feeds.Add(url, script);
                 feedsCheckedListBox.Items.Add(url);
             }

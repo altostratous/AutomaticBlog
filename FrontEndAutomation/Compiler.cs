@@ -22,6 +22,8 @@ namespace FrontEndAutomation
         }
         public static Statement Compile(XmlNode documentElement)
         {
+            if (documentElement.Name == "#comment")
+                return new EmptyStatement();
             Statement statement = (Statement)Activator.CreateInstance(Type.GetType(documentElement.Attributes.GetNamedItem("class").InnerText), new object[] { documentElement.Name, documentElement as XmlNode });
             return statement;
         }

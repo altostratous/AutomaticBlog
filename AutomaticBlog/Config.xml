@@ -3,11 +3,9 @@
   <feeds>
     <feed>
       <url>http://aghlaniat.blog.ir/rss/</url>
-      <script>Scripts/BlogDotIrFeed.xml</script>
     </feed>
     <feed>
       <url>http://tahghigh20.ir/feed/</url>
-      <script>Scripts/BlogDotIrFeed.xml</script>
     </feed>
   </feeds>
   <blogs>
@@ -17,6 +15,13 @@
       <password>poorpoor</password>
       <login>Scripts/JavanBlogLogin.xml</login>
       <post>Scripts/JavanBlogPost.xml</post>
+    </blog>
+    <blog>
+      <url>http://alto.avablog.ir/</url>
+      <username>alto</username>
+      <password>poorpoor</password>
+      <login>Scripts/AvaBlogLogin.xml</login>
+      <post>Scripts/AvaBlogPost.xml</post>
     </blog>
   </blogs>
 </config>

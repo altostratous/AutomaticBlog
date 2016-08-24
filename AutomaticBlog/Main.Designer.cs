@@ -122,7 +122,10 @@
             // 
             // logListBox
             // 
+            this.logListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.logListBox.FormattingEnabled = true;
+            this.logListBox.HorizontalScrollbar = true;
             this.logListBox.Location = new System.Drawing.Point(10, 273);
             this.logListBox.Name = "logListBox";
             this.logListBox.Size = new System.Drawing.Size(293, 95);
