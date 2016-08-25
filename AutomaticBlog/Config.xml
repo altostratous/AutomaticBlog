@@ -57,6 +57,13 @@
       <password>poorpoor</password>
       <login>Scripts/BayanLogin.xml</login>
       <post>Scripts/BayanPost.xml</post>
-    </blog>    
+    </blog>
+    <blog>
+      <url>http://blog.ir/panel/barnamebenevis/post_edit/#new</url>
+      <username>altostratous</username>
+      <password>Sha'erNazer</password>
+      <login>Scripts/BayanLogin.xml</login>
+      <post>Scripts/BayanPost.xml</post>
+    </blog>
   </blogs>
 </config>
