@@ -10,6 +10,13 @@
   </feeds>
   <blogs>
     <blog>
+      <url>http://parsablog.com</url>
+      <username>alto</username>
+      <password>poorpoor</password>
+      <login>Scripts/ParsaBlogLogin.xml</login>
+      <post>Scripts/ParsaBlogPost.xml</post>
+    </blog>
+    <blog>
       <url>http://poor.javanblog.ir/</url>
       <username>alto</username>
       <password>poorpoor</password>
