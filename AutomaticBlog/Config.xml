@@ -37,5 +37,12 @@
       <login>Scripts/LoxBlogLogin.xml</login>
       <post>Scripts/LoxBlogPost.xml</post>
     </blog>
+    <blog>
+      <url>http://week.blogfa.com/</url>
+      <username>week</username>
+      <password>poorpoor</password>
+      <login>Scripts/BlogfaLogin.xml</login>
+      <post>Scripts/BlogfaPost.xml</post>
+    </blog>
   </blogs>
 </config>

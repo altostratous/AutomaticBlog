@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<post class="FrontEndAutomation.FunctionStatement">
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = $('a:contains("نوشته جدید")').attr('href');
+    </Script>
+  </enterLogin>
+
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>8</Count>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>0</Count>
+  </waitWhileLogin>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof tinyMCE.getInstanceById('txtContent') !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+
+      $('#linkextended')[0].click();
+      $('#txtTitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      tinyMCE.getInstanceById('txtContent').setContent($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      
+    </Script>
+  </enterLogin>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>0</Count>
+  </waitWhileLogin>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof tinyMCE.getInstanceById('txtExtended') !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      tinyMCE.getInstanceById('txtExtended').setContent($('#FrontEndAutomation_content').html(), {format : 'raw'});
+      
+    </Script>
+  </enterLogin>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>30</Count>
+  </waitWhileLogin>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>$('input[type=submit]').trigger('click');</Script>
+  </enterLogin>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>5</Count>
+  </waitWhileLogin>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>document.getElementsByTagName('img').length == 0</Condition>
+  </waitWhilePostComplete>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>window.location.href = 'http://blogfa.com/Desktop/Home.aspx'</Script>
+  </enterLogin>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>20</Count>
+  </waitWhileLogin>
+</post>

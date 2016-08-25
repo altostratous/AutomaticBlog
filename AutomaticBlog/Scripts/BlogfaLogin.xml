@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<login class="FrontEndAutomation.FunctionStatement">
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://blogfa.com';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>5</Count>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('input').length != 5)</Condition>
+  </waitWhileLogin>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('#usid').val($('#FrontEndAutomation_username').html());
+      $('#upass').val($('#FrontEndAutomation_password').html());
+      $('input[type=submit]').trigger('click');
+    </Script>
+  </enterLogin>
+
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>20</Count>
+  </waitWhileLogin>
+</login>
