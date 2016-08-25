@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<login class="FrontEndAutomation.FunctionStatement">
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = $('#FrontEndAutomation_url').html();
+    </Script>
+  </goToLoginPage>
+  
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>5</Count>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('input').length != 4)</Condition>
+  </waitWhileLogin>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('#UserName').val($('#FrontEndAutomation_username').html());
+      $('#Password').val($('#FrontEndAutomation_password').html());
+      $('#submit-btn').trigger('click');
+    </Script>
+  </enterLogin>
+
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>10</Count>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('#post-title').length != 1)</Condition>
+  </waitWhileLogin>
+</login>

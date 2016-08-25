@@ -69,7 +69,8 @@ namespace AutomaticBlog
                     LoginScript = node["login"].InnerText,
                     PostScript = node["post"].InnerText,
                     Username = node["username"].InnerText,
-                    Password = node["password"].InnerText
+                    Password = node["password"].InnerText,
+                    Url = node["url"].InnerText
                 });
                 blogsCheckListBox.Items.Add(node["url"].InnerText);
             }

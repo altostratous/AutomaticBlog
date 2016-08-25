@@ -19,6 +19,7 @@ namespace AutomaticBlog
             executor.Statement = Compiler.Compile(blog.LoginScript);
             executor.Scope.Set("username", blog.Username);
             executor.Scope.Set("password", blog.Password);
+            executor.Scope.Set("url", blog.Url);
             executor.Execute();
         }
 

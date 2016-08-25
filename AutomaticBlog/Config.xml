@@ -44,5 +44,12 @@
       <login>Scripts/BlogfaLogin.xml</login>
       <post>Scripts/BlogfaPost.xml</post>
     </blog>
+    <blog>
+      <url>http://blogsky.com/mostaz/post/new</url>
+      <username>mostazafin</username>
+      <password>poorpoor</password>
+      <login>Scripts/BlogskyLogin.xml</login>
+      <post>Scripts/BlogskyPost.xml</post>
+    </blog>
   </blogs>
 </config>
