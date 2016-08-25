@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<login class="FrontEndAutomation.FunctionStatement">
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://www.parsiblog.com/Def.htm?ru=Default';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>20</Count>
+  </waitWhileLogin>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>document.getElementsByTagName('input').length == 0</Condition>
+  </waitWhileLogin>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      document.getElementById('beuser').value = document.getElementById('FrontEndAutomation_username').innerHTML;
+      document.getElementById('bepass').value = document.getElementById('FrontEndAutomation_password').innerHTML;
+      document.getElementById('beusergif').click();
+    </Script>
+  </enterLogin>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>10</Count>
+  </waitWhileLogin>
+</login>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<post class="FrontEndAutomation.FunctionStatement">
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://www.parsiblog.com/Notes.aspx?Post';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>5</Count>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof tinyMCE.getInstanceById('PBEdit') !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#Title').length == 0</Condition>
+  </waitWhilePostComplete>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('#Title').val($('#FrontEndAutomation_title').html());
+      var content = $('#FrontEndAutomation_content').html().length > 10000 ? $('#FrontEndAutomation_abstract').html() : $('#FrontEndAutomation_content').html();
+      tinyMCE.getInstanceById('PBEdit').setContent(content.substring(0, 10000));
+      $('input[name=submit]').trigger('click');
+      SaveNote("Notes.aspx?Post");
+    </Script>
+  </postContent>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition> $('#Title').val() != 0</Condition>
+  </waitWhilePostComplete>-->
+</post>
