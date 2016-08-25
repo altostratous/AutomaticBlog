@@ -59,11 +59,11 @@
       <post>Scripts/BayanPost.xml</post>
     </blog>
     <blog>
-      <url>http://blog.ir/panel/barnamebenevis/post_edit/#new</url>
-      <username>altostratous</username>
-      <password>Sha'erNazer</password>
-      <login>Scripts/BayanLogin.xml</login>
-      <post>Scripts/BayanPost.xml</post>
+      <url>http://pishroblog.ir</url>
+      <username>alto</username>
+      <password>poorpoor</password>
+      <login>Scripts/PishroBlogLogin.xml</login>
+      <post>Scripts/PishroBlogPost.xml</post>
     </blog>
   </blogs>
 </config>
