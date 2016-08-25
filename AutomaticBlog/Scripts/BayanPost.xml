@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<post class="FrontEndAutomation.FunctionStatement">
+  <!--<injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>-->
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#txtPostTitle').length == 0</Condition>
+  </waitWhilePostComplete>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('#txtPostTitle').val($('#FrontEndAutomation_title').html());
+      var d = new Date();
+      var n = d.getTime();
+      $('#txtUrl').val($('#FrontEndAutomation_title').html() + n);
+      window.editor.insertHtml($('#FrontEndAutomation_abstract').html());
+      insert_continue();
+      window.editor.insertHtml($('#FrontEndAutomation_readmore').html());
+      save(0, 1);
+    </Script>
+  </enterLogin>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+  <Condition>window.location.href != 'http://blog.ir/panel/mostz/posts'</Condition>
+</waitWhilePostComplete>
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = $('#FrontEndAutomation_url').html();
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>5</Count>
+  </waitWhileLogin>
+</post>

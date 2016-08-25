@@ -51,5 +51,12 @@
       <login>Scripts/BlogskyLogin.xml</login>
       <post>Scripts/BlogskyPost.xml</post>
     </blog>
+    <blog>
+      <url>http://blog.ir/panel/mostz/post_edit/#new</url>
+      <username>poorpoor</username>
+      <password>poorpoor</password>
+      <login>Scripts/BayanLogin.xml</login>
+      <post>Scripts/BayanPost.xml</post>
+    </blog>    
   </blogs>
 </config>
