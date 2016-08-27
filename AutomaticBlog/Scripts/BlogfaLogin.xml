@@ -23,6 +23,6 @@
   </enterLogin>
 
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
-    <Count>20</Count>
+    <Count>40</Count>
   </waitWhileLogin>
 </login>

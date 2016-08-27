@@ -36,12 +36,13 @@ namespace AutomaticBlog
             loadConfiguration("Config.xml");
 
             // for test 
-            //posts.Add(new Post() {
-            //    Title = "hsh",
-            //    Abstract = "hsdhl",
-            //    Content = "sdkfj",
-            //    ReadMore = "dljgas"
-            //});
+            posts.Add(new Post()
+            {
+                Title = "hsh",
+                Abstract = "hsdhl",
+                Content = "sdkfj",
+                ReadMore = "dljgas"
+            });
         }
 
         private void loadConfiguration(string confFileName)
@@ -160,48 +161,45 @@ namespace AutomaticBlog
         {
             // posting in blogs
             postBackgroundWorker.ReportProgress(0);
-            int counter = 0;
-            int overalCounter = 0;
-            foreach (string blogUrl in blogs.Keys)
+            AutomaticBlog.Blog currentBlog = null;
+            BlogPoster poster = new BlogPoster(new AutomaticBlog.Blog(), executor);
+            foreach (DataGridViewRow row in postsGrid.Rows)
             {
-                if (blogsCheckListBox.CheckedIndices.Contains(overalCounter))
+                if (!(bool)row.Cells["Status"].Value)
                 {
-                    BlogPoster poster = new BlogPoster(blogs[blogUrl], executor);
-                    webView.Invoke(new Action(delegate
+                    Post post = posts.Find(item => { return item.Link == (string)row.Cells["Url"].Value; });
+                    AutomaticBlog.Blog blog = blogs[row.Cells["Blog"].Value.ToString()];
+                    if(currentBlog != blog)
                     {
-                        //try {
-                        //    poster.Login();
-                        //}catch(Exception ex)
-                        //{
-                        //    log(ex.Message);
-                        //}
-                        poster.Login();
-                    }));
-                    foreach(Post post in posts)
-                    {
-                        if (postBackgroundWorker.CancellationPending)
-                        {
-                            e.Cancel = true;
-                            return;
-                        }
+                        poster = new BlogPoster(blog, executor);
                         webView.Invoke(new Action(delegate {
-                            //try
-                            //{
-                            //    poster.Post(post);
-                            //}
-                            //catch (Exception ex)
-                            //{
-                            //    log(ex.Message);
-                            //}
-                            poster.Post(post);
+                            poster.Login();
                         }));
-                        counter++;
-                        postBackgroundWorker.ReportProgress(100 * counter / postsToPostCount);
+                        currentBlog = blog;
                     }
-                    
+                    webView.Invoke(new Action(delegate {
+                        poster.Post(post);
+                    }));
+
+                    checkPostBlogPair(currentBlog, post);
                 }
-                overalCounter++;
+                postBackgroundWorker.ReportProgress((row.Index + 1) * 100 / postsGrid.RowCount);
             }
+        }
+
+        private void checkPostBlogPair(Blog currentBlog, Post post)
+        {
+            postsGrid.Invoke(new Action(delegate
+            {
+                foreach(DataGridViewRow row in postsGrid.Rows)
+                {
+                    if(post.Link == (string)row.Cells["Url"].Value && currentBlog.Url == (string)row.Cells["BLog"].Value)
+                    {
+                        row.Cells["Status"].Value = true;
+                        return;
+                    }
+                }
+            }));
         }
 
         private void postBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -261,6 +259,7 @@ namespace AutomaticBlog
 
         private void generatePairsBtn_Click(object sender, EventArgs e)
         {
+            postsGrid.Rows.Clear();
             foreach (object selectedBlog in blogsCheckListBox.CheckedItems)
             {
                 foreach (Post post in posts)

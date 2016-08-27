@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <post class="FrontEndAutomation.FunctionStatement">
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>document.readyState != 'complete'</Condition>
+  </waitWhilePostComplete>
   <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
     <FileName>jquery-2.1.4.js</FileName>
   </injectScript>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('a:contains("نوشته جدید")').length == 0</Condition>
+  </waitWhilePostComplete>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
       window.location.href = $('a:contains("نوشته جدید")').attr('href');
