@@ -341,6 +341,16 @@ namespace AutomaticBlog
             {
                 feedList.Items.Add(feed);
             }
+            blogTypeComboBox.Items.Clear();
+            HashSet<string> blogTypes = new HashSet<string>();
+            foreach(string scriptName in Directory.GetFiles(configurationEditor.ScriptsDirectory))
+            {
+                blogTypes.Add(Path.GetFileNameWithoutExtension(scriptName).Replace("Login","").Replace("Post", ""));
+            }
+            foreach(string blogType in blogTypes)
+            {
+                blogTypeComboBox.Items.Add(blogType);
+            }
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -351,10 +361,27 @@ namespace AutomaticBlog
 
         private void blogsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (updateLock)
+                return;
+            viewLock = true;
             if(feedList.SelectedIndex != -1)
             {
                 feedUrlTextBox.Text = (string)feedList.SelectedItem;
             }
+            if(blogsListBox.SelectedIndex != -1)
+            {
+                Blog blog = configurationEditor.Blogs[(string)blogsListBox.SelectedItem];
+                urlTextBox.Text = blog.Url;
+                usernameTextBox.Text = blog.Username;
+                passwordTextBox.Text = blog.Password;
+                blogTypeComboBox.SelectedIndex = blogTypeIndex(blog);
+            }
+            viewLock = false;
+        }
+
+        private int blogTypeIndex(Blog blog)
+        {
+            return blogTypeComboBox.Items.IndexOf(Path.GetFileNameWithoutExtension(blog.LoginScript).Replace("Login", ""));
         }
 
         private void feedUrlTextBox_TextChanged(object sender, EventArgs e)
@@ -364,6 +391,38 @@ namespace AutomaticBlog
                 feedList.Items[feedList.SelectedIndex] = feedUrlTextBox.Text;
                 configurationEditor.Feeds[feedList.SelectedIndex] = feedUrlTextBox.Text;
             }
+        }
+
+        private void urlTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (viewLock)
+                return;
+            updateLock = true;
+            if (blogsListBox.SelectedIndex != -1)
+            {
+                configurationEditor.Blogs.Remove(blogsListBox.SelectedItem.ToString());
+                blogsListBox.Items[blogsListBox.SelectedIndex] = urlTextBox.Text;
+                configurationEditor.Blogs.Add((string)blogsListBox.SelectedItem, new AutomaticBlog.Blog());
+                configurationEditor.Blogs[(string)blogsListBox.SelectedItem].Url = urlTextBox.Text;
+                configurationEditor.Blogs[(string)blogsListBox.SelectedItem].Username = usernameTextBox.Text;
+                configurationEditor.Blogs[(string)blogsListBox.SelectedItem].Password = passwordTextBox.Text;
+                configurationEditor.Blogs[(string)blogsListBox.SelectedItem].LoginScript = loginScriptFromBlogType((string)blogTypeComboBox.SelectedItem);
+                configurationEditor.Blogs[(string)blogsListBox.SelectedItem].PostScript = postScriptFromBlogType((string)blogTypeComboBox.SelectedItem);
+            }
+            updateLock = false;
+        }
+
+        bool updateLock = false;
+        bool viewLock = true;
+
+        private string postScriptFromBlogType(string selectedItem)
+        {
+            return Path.Combine(configurationEditor.ScriptsDirectory, selectedItem + "Post.xml");
+        }
+
+        private string loginScriptFromBlogType(string selectedItem)
+        {
+            return Path.Combine(configurationEditor.ScriptsDirectory, selectedItem + "Login.xml");
         }
     }
 }
