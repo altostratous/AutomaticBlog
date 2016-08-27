@@ -22,6 +22,7 @@ namespace AutomaticBlog
         List<Post> posts;
         int fetchSelectedFeedsCount = 0;
         int postsToPostCount = 0;
+        ConfigurationEditor configurationEditor;
 
         public Main()
         {
@@ -34,7 +35,7 @@ namespace AutomaticBlog
             blogs = new Dictionary<string, Blog>();
             posts = new List<Post>();
             loadConfiguration("Config.xml");
-
+            configurationEditor = new ConfigurationEditor("Config.xml", "Scripts");
             // for test 
             //posts.Add(new Post()
             //{
@@ -324,6 +325,44 @@ namespace AutomaticBlog
                 {
                     postsGrid.Rows.RemoveAt(i);
                 }
+            }
+        }
+
+        private void loadBtn_Click(object sender, EventArgs e)
+        {
+            configurationEditor.Load();
+            blogsListBox.Items.Clear();
+            feedList.Items.Clear();
+            foreach(string url in configurationEditor.Blogs.Keys)
+            {
+                blogsListBox.Items.Add(url);
+            }
+            foreach(string feed in configurationEditor.Feeds)
+            {
+                feedList.Items.Add(feed);
+            }
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+
+            configurationEditor.Save();
+        }
+
+        private void blogsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(feedList.SelectedIndex != -1)
+            {
+                feedUrlTextBox.Text = (string)feedList.SelectedItem;
+            }
+        }
+
+        private void feedUrlTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(feedList.SelectedIndex != -1)
+            {
+                feedList.Items[feedList.SelectedIndex] = feedUrlTextBox.Text;
+                configurationEditor.Feeds[feedList.SelectedIndex] = feedUrlTextBox.Text;
             }
         }
     }

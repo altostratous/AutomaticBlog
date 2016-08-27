@@ -65,12 +65,14 @@
             this.removeFeedBtn = new System.Windows.Forms.Button();
             this.removeBlogsBtn = new System.Windows.Forms.Button();
             this.addBlogBtn = new System.Windows.Forms.Button();
+            this.feedUrlTextBox = new System.Windows.Forms.TextBox();
             this.operationsPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.operationTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.postsGrid)).BeginInit();
             this.configTab.SuspendLayout();
             this.browserTab.SuspendLayout();
+            this.editFeedGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // webView
@@ -371,6 +373,7 @@
             this.feedList.Name = "feedList";
             this.feedList.Size = new System.Drawing.Size(285, 134);
             this.feedList.TabIndex = 0;
+            this.feedList.SelectedIndexChanged += new System.EventHandler(this.blogsListBox_SelectedIndexChanged);
             // 
             // blogsListBox
             // 
@@ -382,6 +385,7 @@
             this.blogsListBox.Name = "blogsListBox";
             this.blogsListBox.Size = new System.Drawing.Size(379, 134);
             this.blogsListBox.TabIndex = 1;
+            this.blogsListBox.SelectedIndexChanged += new System.EventHandler(this.blogsListBox_SelectedIndexChanged);
             // 
             // saveBtn
             // 
@@ -392,6 +396,7 @@
             this.saveBtn.TabIndex = 2;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // loadBtn
             // 
@@ -402,10 +407,12 @@
             this.loadBtn.TabIndex = 3;
             this.loadBtn.Text = "Load";
             this.loadBtn.UseVisualStyleBackColor = true;
+            this.loadBtn.Click += new System.EventHandler(this.loadBtn_Click);
             // 
             // editFeedGroupBox
             // 
             this.editFeedGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.editFeedGroupBox.Controls.Add(this.feedUrlTextBox);
             this.editFeedGroupBox.Location = new System.Drawing.Point(8, 148);
             this.editFeedGroupBox.Name = "editFeedGroupBox";
             this.editFeedGroupBox.Size = new System.Drawing.Size(285, 201);
@@ -464,6 +471,14 @@
             this.addBlogBtn.Text = "Add blog";
             this.addBlogBtn.UseVisualStyleBackColor = true;
             // 
+            // feedUrlTextBox
+            // 
+            this.feedUrlTextBox.Location = new System.Drawing.Point(6, 19);
+            this.feedUrlTextBox.Name = "feedUrlTextBox";
+            this.feedUrlTextBox.Size = new System.Drawing.Size(272, 20);
+            this.feedUrlTextBox.TabIndex = 0;
+            this.feedUrlTextBox.TextChanged += new System.EventHandler(this.feedUrlTextBox_TextChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,6 +495,8 @@
             this.configTab.ResumeLayout(false);
             this.browserTab.ResumeLayout(false);
             this.browserTab.PerformLayout();
+            this.editFeedGroupBox.ResumeLayout(false);
+            this.editFeedGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -523,6 +540,7 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.ListBox blogsListBox;
         private System.Windows.Forms.ListBox feedList;
+        private System.Windows.Forms.TextBox feedUrlTextBox;
     }
 }
 
