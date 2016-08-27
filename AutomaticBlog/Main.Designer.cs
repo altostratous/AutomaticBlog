@@ -40,6 +40,15 @@
             this.fetchBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.postBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.consoleTextBox = new System.Windows.Forms.TextBox();
+            this.operationsPanel = new System.Windows.Forms.Panel();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.browserTab = new System.Windows.Forms.TabPage();
+            this.configTab = new System.Windows.Forms.TabPage();
+            this.operationTab = new System.Windows.Forms.TabPage();
+            this.operationsPanel.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.browserTab.SuspendLayout();
+            this.operationTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // webView
@@ -47,15 +56,15 @@
             this.webView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.webView.Location = new System.Drawing.Point(309, 12);
+            this.webView.Location = new System.Drawing.Point(6, 6);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(604, 386);
+            this.webView.Size = new System.Drawing.Size(783, 347);
             this.webView.TabIndex = 0;
             // 
             // progressBar
             // 
             this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.progressBar.Location = new System.Drawing.Point(10, 375);
+            this.progressBar.Location = new System.Drawing.Point(3, 324);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(293, 23);
             this.progressBar.TabIndex = 2;
@@ -63,7 +72,7 @@
             // fetchFeedsButton
             // 
             this.fetchFeedsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.fetchFeedsButton.Location = new System.Drawing.Point(10, 404);
+            this.fetchFeedsButton.Location = new System.Drawing.Point(3, 4);
             this.fetchFeedsButton.Name = "fetchFeedsButton";
             this.fetchFeedsButton.Size = new System.Drawing.Size(78, 23);
             this.fetchFeedsButton.TabIndex = 3;
@@ -74,15 +83,15 @@
             // feedsCheckedListBox
             // 
             this.feedsCheckedListBox.FormattingEnabled = true;
-            this.feedsCheckedListBox.Location = new System.Drawing.Point(10, 12);
+            this.feedsCheckedListBox.Location = new System.Drawing.Point(3, 6);
             this.feedsCheckedListBox.Name = "feedsCheckedListBox";
-            this.feedsCheckedListBox.Size = new System.Drawing.Size(293, 124);
+            this.feedsCheckedListBox.Size = new System.Drawing.Size(293, 94);
             this.feedsCheckedListBox.TabIndex = 4;
             // 
             // blogsCheckListBox
             // 
             this.blogsCheckListBox.FormattingEnabled = true;
-            this.blogsCheckListBox.Location = new System.Drawing.Point(10, 142);
+            this.blogsCheckListBox.Location = new System.Drawing.Point(3, 106);
             this.blogsCheckListBox.Name = "blogsCheckListBox";
             this.blogsCheckListBox.Size = new System.Drawing.Size(293, 124);
             this.blogsCheckListBox.TabIndex = 5;
@@ -90,7 +99,7 @@
             // postFeedsButton
             // 
             this.postFeedsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.postFeedsButton.Location = new System.Drawing.Point(94, 404);
+            this.postFeedsButton.Location = new System.Drawing.Point(87, 4);
             this.postFeedsButton.Name = "postFeedsButton";
             this.postFeedsButton.Size = new System.Drawing.Size(78, 23);
             this.postFeedsButton.TabIndex = 6;
@@ -101,7 +110,7 @@
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancelButton.Location = new System.Drawing.Point(242, 404);
+            this.cancelButton.Location = new System.Drawing.Point(235, 354);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(61, 23);
             this.cancelButton.TabIndex = 7;
@@ -112,7 +121,7 @@
             // reloadButton
             // 
             this.reloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.reloadButton.Location = new System.Drawing.Point(178, 404);
+            this.reloadButton.Location = new System.Drawing.Point(171, 4);
             this.reloadButton.Name = "reloadButton";
             this.reloadButton.Size = new System.Drawing.Size(58, 23);
             this.reloadButton.TabIndex = 8;
@@ -126,9 +135,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.logListBox.FormattingEnabled = true;
             this.logListBox.HorizontalScrollbar = true;
-            this.logListBox.Location = new System.Drawing.Point(10, 273);
+            this.logListBox.Location = new System.Drawing.Point(3, 236);
             this.logListBox.Name = "logListBox";
-            this.logListBox.Size = new System.Drawing.Size(293, 95);
+            this.logListBox.Size = new System.Drawing.Size(293, 82);
             this.logListBox.TabIndex = 9;
             // 
             // fetchBackgroundWorker
@@ -151,31 +160,87 @@
             // 
             this.consoleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.consoleTextBox.Location = new System.Drawing.Point(309, 406);
+            this.consoleTextBox.Location = new System.Drawing.Point(6, 359);
             this.consoleTextBox.Name = "consoleTextBox";
-            this.consoleTextBox.Size = new System.Drawing.Size(604, 20);
+            this.consoleTextBox.Size = new System.Drawing.Size(783, 20);
             this.consoleTextBox.TabIndex = 10;
             this.consoleTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.consoleTextBox_KeyPress);
+            // 
+            // operationsPanel
+            // 
+            this.operationsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.operationsPanel.Controls.Add(this.fetchFeedsButton);
+            this.operationsPanel.Controls.Add(this.postFeedsButton);
+            this.operationsPanel.Controls.Add(this.reloadButton);
+            this.operationsPanel.Location = new System.Drawing.Point(0, 350);
+            this.operationsPanel.Name = "operationsPanel";
+            this.operationsPanel.Size = new System.Drawing.Size(232, 30);
+            this.operationsPanel.TabIndex = 11;
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.browserTab);
+            this.tabControl.Controls.Add(this.configTab);
+            this.tabControl.Controls.Add(this.operationTab);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(754, 412);
+            this.tabControl.TabIndex = 12;
+            // 
+            // browserTab
+            // 
+            this.browserTab.Controls.Add(this.webView);
+            this.browserTab.Controls.Add(this.consoleTextBox);
+            this.browserTab.Location = new System.Drawing.Point(4, 22);
+            this.browserTab.Name = "browserTab";
+            this.browserTab.Padding = new System.Windows.Forms.Padding(3);
+            this.browserTab.Size = new System.Drawing.Size(795, 386);
+            this.browserTab.TabIndex = 0;
+            this.browserTab.Text = "Browser";
+            this.browserTab.UseVisualStyleBackColor = true;
+            // 
+            // configTab
+            // 
+            this.configTab.Location = new System.Drawing.Point(4, 22);
+            this.configTab.Name = "configTab";
+            this.configTab.Padding = new System.Windows.Forms.Padding(3);
+            this.configTab.Size = new System.Drawing.Size(795, 386);
+            this.configTab.TabIndex = 1;
+            this.configTab.Text = "Configuration";
+            this.configTab.UseVisualStyleBackColor = true;
+            // 
+            // operationTab
+            // 
+            this.operationTab.Controls.Add(this.feedsCheckedListBox);
+            this.operationTab.Controls.Add(this.operationsPanel);
+            this.operationTab.Controls.Add(this.progressBar);
+            this.operationTab.Controls.Add(this.logListBox);
+            this.operationTab.Controls.Add(this.blogsCheckListBox);
+            this.operationTab.Controls.Add(this.cancelButton);
+            this.operationTab.Location = new System.Drawing.Point(4, 22);
+            this.operationTab.Name = "operationTab";
+            this.operationTab.Padding = new System.Windows.Forms.Padding(3);
+            this.operationTab.Size = new System.Drawing.Size(746, 386);
+            this.operationTab.TabIndex = 2;
+            this.operationTab.Text = "Operations";
+            this.operationTab.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 439);
-            this.Controls.Add(this.consoleTextBox);
-            this.Controls.Add(this.logListBox);
-            this.Controls.Add(this.reloadButton);
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.postFeedsButton);
-            this.Controls.Add(this.blogsCheckListBox);
-            this.Controls.Add(this.feedsCheckedListBox);
-            this.Controls.Add(this.fetchFeedsButton);
-            this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.webView);
+            this.ClientSize = new System.Drawing.Size(754, 412);
+            this.Controls.Add(this.tabControl);
             this.Name = "Main";
             this.Text = "Automatic Blog";
+            this.operationsPanel.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.browserTab.ResumeLayout(false);
+            this.browserTab.PerformLayout();
+            this.operationTab.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -193,6 +258,11 @@
         private System.ComponentModel.BackgroundWorker fetchBackgroundWorker;
         private System.ComponentModel.BackgroundWorker postBackgroundWorker;
         private System.Windows.Forms.TextBox consoleTextBox;
+        private System.Windows.Forms.Panel operationsPanel;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage browserTab;
+        private System.Windows.Forms.TabPage configTab;
+        private System.Windows.Forms.TabPage operationTab;
     }
 }
 

@@ -86,6 +86,7 @@ namespace AutomaticBlog
         {
             fetchBackgroundWorker.RunWorkerAsync();
             fetchSelectedFeedsCount = feedsCheckedListBox.CheckedItems.Count;
+            operationsPanel.Enabled = false;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -98,7 +99,7 @@ namespace AutomaticBlog
             {
                 postBackgroundWorker.CancelAsync();
             }
-            log("Cancel.");
+            log("Cancelling operation. ");
         }
 
         private void log(string toLog)
@@ -212,6 +213,7 @@ namespace AutomaticBlog
             else {
                 log("Completed posting.");
             }
+            operationsPanel.Enabled = true;
         }
 
         private void fetchBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -223,6 +225,7 @@ namespace AutomaticBlog
             else {
                 log("Completed fetching.");
             }
+            operationsPanel.Enabled = true;
         }
 
         private void postFeedsButton_Click(object sender, EventArgs e)
@@ -238,6 +241,7 @@ namespace AutomaticBlog
             }
             postsToPostCount = posts.Count * blogsCheckListBox.CheckedIndices.Count;
             postBackgroundWorker.RunWorkerAsync();
+            operationsPanel.Enabled = false;
         }
 
         private void consoleTextBox_KeyPress(object sender, KeyPressEventArgs e)

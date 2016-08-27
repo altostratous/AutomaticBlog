@@ -27,7 +27,7 @@
   <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
     <Count>10</Count>
   </goToLoginPage>
-  <waitWhileLoginComplete class="FrontEndAutomation.XulFxWaitStatement">
+  <!--<waitWhileLoginComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>($('input[name=submit]').length != 1)</Condition>
-  </waitWhileLoginComplete>
+  </waitWhileLoginComplete>-->
 </login>
