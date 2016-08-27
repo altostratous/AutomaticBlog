@@ -55,10 +55,21 @@
             this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.configTab = new System.Windows.Forms.TabPage();
             this.browserTab = new System.Windows.Forms.TabPage();
+            this.feedList = new System.Windows.Forms.ListBox();
+            this.blogsListBox = new System.Windows.Forms.ListBox();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.loadBtn = new System.Windows.Forms.Button();
+            this.editFeedGroupBox = new System.Windows.Forms.GroupBox();
+            this.editBlogGroupBox = new System.Windows.Forms.GroupBox();
+            this.addFeed = new System.Windows.Forms.Button();
+            this.removeFeedBtn = new System.Windows.Forms.Button();
+            this.removeBlogsBtn = new System.Windows.Forms.Button();
+            this.addBlogBtn = new System.Windows.Forms.Button();
             this.operationsPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.operationTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.postsGrid)).BeginInit();
+            this.configTab.SuspendLayout();
             this.browserTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -321,6 +332,16 @@
             // 
             // configTab
             // 
+            this.configTab.Controls.Add(this.addBlogBtn);
+            this.configTab.Controls.Add(this.removeBlogsBtn);
+            this.configTab.Controls.Add(this.removeFeedBtn);
+            this.configTab.Controls.Add(this.addFeed);
+            this.configTab.Controls.Add(this.editBlogGroupBox);
+            this.configTab.Controls.Add(this.editFeedGroupBox);
+            this.configTab.Controls.Add(this.loadBtn);
+            this.configTab.Controls.Add(this.saveBtn);
+            this.configTab.Controls.Add(this.blogsListBox);
+            this.configTab.Controls.Add(this.feedList);
             this.configTab.Location = new System.Drawing.Point(4, 22);
             this.configTab.Name = "configTab";
             this.configTab.Padding = new System.Windows.Forms.Padding(3);
@@ -341,6 +362,108 @@
             this.browserTab.Text = "Browser";
             this.browserTab.UseVisualStyleBackColor = true;
             // 
+            // feedList
+            // 
+            this.feedList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.feedList.FormattingEnabled = true;
+            this.feedList.Location = new System.Drawing.Point(8, 8);
+            this.feedList.Name = "feedList";
+            this.feedList.Size = new System.Drawing.Size(285, 134);
+            this.feedList.TabIndex = 0;
+            // 
+            // blogsListBox
+            // 
+            this.blogsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.blogsListBox.FormattingEnabled = true;
+            this.blogsListBox.Location = new System.Drawing.Point(299, 8);
+            this.blogsListBox.Name = "blogsListBox";
+            this.blogsListBox.Size = new System.Drawing.Size(379, 134);
+            this.blogsListBox.TabIndex = 1;
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveBtn.Location = new System.Drawing.Point(8, 355);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.TabIndex = 2;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            // 
+            // loadBtn
+            // 
+            this.loadBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.loadBtn.Location = new System.Drawing.Point(89, 355);
+            this.loadBtn.Name = "loadBtn";
+            this.loadBtn.Size = new System.Drawing.Size(75, 23);
+            this.loadBtn.TabIndex = 3;
+            this.loadBtn.Text = "Load";
+            this.loadBtn.UseVisualStyleBackColor = true;
+            // 
+            // editFeedGroupBox
+            // 
+            this.editFeedGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.editFeedGroupBox.Location = new System.Drawing.Point(8, 148);
+            this.editFeedGroupBox.Name = "editFeedGroupBox";
+            this.editFeedGroupBox.Size = new System.Drawing.Size(285, 201);
+            this.editFeedGroupBox.TabIndex = 4;
+            this.editFeedGroupBox.TabStop = false;
+            this.editFeedGroupBox.Text = "Edit Feed";
+            // 
+            // editBlogGroupBox
+            // 
+            this.editBlogGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.editBlogGroupBox.Location = new System.Drawing.Point(299, 148);
+            this.editBlogGroupBox.Name = "editBlogGroupBox";
+            this.editBlogGroupBox.Size = new System.Drawing.Size(379, 201);
+            this.editBlogGroupBox.TabIndex = 5;
+            this.editBlogGroupBox.TabStop = false;
+            this.editBlogGroupBox.Text = "Edit blog";
+            // 
+            // addFeed
+            // 
+            this.addFeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addFeed.Location = new System.Drawing.Point(170, 355);
+            this.addFeed.Name = "addFeed";
+            this.addFeed.Size = new System.Drawing.Size(75, 23);
+            this.addFeed.TabIndex = 6;
+            this.addFeed.Text = "Add feed";
+            this.addFeed.UseVisualStyleBackColor = true;
+            // 
+            // removeFeedBtn
+            // 
+            this.removeFeedBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.removeFeedBtn.Location = new System.Drawing.Point(251, 355);
+            this.removeFeedBtn.Name = "removeFeedBtn";
+            this.removeFeedBtn.Size = new System.Drawing.Size(88, 23);
+            this.removeFeedBtn.TabIndex = 7;
+            this.removeFeedBtn.Text = "Remove feeds";
+            this.removeFeedBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeBlogsBtn
+            // 
+            this.removeBlogsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.removeBlogsBtn.Location = new System.Drawing.Point(426, 355);
+            this.removeBlogsBtn.Name = "removeBlogsBtn";
+            this.removeBlogsBtn.Size = new System.Drawing.Size(96, 23);
+            this.removeBlogsBtn.TabIndex = 8;
+            this.removeBlogsBtn.Text = "Remove blogs";
+            this.removeBlogsBtn.UseVisualStyleBackColor = true;
+            // 
+            // addBlogBtn
+            // 
+            this.addBlogBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addBlogBtn.Location = new System.Drawing.Point(345, 355);
+            this.addBlogBtn.Name = "addBlogBtn";
+            this.addBlogBtn.Size = new System.Drawing.Size(75, 23);
+            this.addBlogBtn.TabIndex = 9;
+            this.addBlogBtn.Text = "Add blog";
+            this.addBlogBtn.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,6 +477,7 @@
             this.operationTab.ResumeLayout(false);
             this.operationTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.postsGrid)).EndInit();
+            this.configTab.ResumeLayout(false);
             this.browserTab.ResumeLayout(false);
             this.browserTab.PerformLayout();
             this.ResumeLayout(false);
@@ -389,6 +513,16 @@
         private System.Windows.Forms.DataGridViewLinkColumn Url;
         private System.Windows.Forms.DataGridViewLinkColumn Blog;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
+        private System.Windows.Forms.Button addBlogBtn;
+        private System.Windows.Forms.Button removeBlogsBtn;
+        private System.Windows.Forms.Button removeFeedBtn;
+        private System.Windows.Forms.Button addFeed;
+        private System.Windows.Forms.GroupBox editBlogGroupBox;
+        private System.Windows.Forms.GroupBox editFeedGroupBox;
+        private System.Windows.Forms.Button loadBtn;
+        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.ListBox blogsListBox;
+        private System.Windows.Forms.ListBox feedList;
     }
 }
 

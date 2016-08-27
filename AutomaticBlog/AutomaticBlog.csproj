@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="Blog.cs" />
     <Compile Include="BlogPoster.cs" />
+    <Compile Include="ConfigurationEditor.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
