@@ -36,12 +36,12 @@ namespace AutomaticBlog
             loadConfiguration("Config.xml");
 
             // for test 
-            posts.Add(new Post() {
-                Title = "hsh",
-                Abstract = "hsdhl",
-                Content = "sdkfj",
-                ReadMore = "dljgas"
-            });
+            //posts.Add(new Post() {
+            //    Title = "hsh",
+            //    Abstract = "hsdhl",
+            //    Content = "sdkfj",
+            //    ReadMore = "dljgas"
+            //});
         }
 
         private void loadConfiguration(string confFileName)
@@ -256,6 +256,38 @@ namespace AutomaticBlog
                     log(ex.Message);
                 }
                 consoleTextBox.Text = "";
+            }
+        }
+
+        private void generatePairsBtn_Click(object sender, EventArgs e)
+        {
+            foreach (object selectedBlog in blogsCheckListBox.CheckedItems)
+            {
+                foreach (Post post in posts)
+                {
+                    AutomaticBlog.Blog blog = blogs[(string)selectedBlog];
+                    postsGrid.Rows.Add(post.Link, blog.Url, false);
+                }
+            }
+        }
+
+        private void timeFilterButton_Click(object sender, EventArgs e)
+        {
+            HashSet<string> postToRemove = new HashSet<string>();
+            foreach(DataGridViewRow row in postsGrid.Rows)
+            {
+                Post post = posts.Find(item => { return item.Link == (string)row.Cells["Url"].Value; });
+                if(post.Date.CompareTo(fromDateTime.Value) < 0 || post.Date.CompareTo(toDateTime.Value) > 0)
+                {
+                    postToRemove.Add(post.Link);
+                }
+            }
+            for(int i = postsGrid.Rows.Count - 1; i >= 0; i--)
+            {
+                if(postToRemove.Contains((string)postsGrid.Rows[i].Cells["Url"].Value))
+                {
+                    postsGrid.Rows.RemoveAt(i);
+                }
             }
         }
     }

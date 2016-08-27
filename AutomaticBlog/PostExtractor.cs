@@ -31,17 +31,21 @@ namespace AutomaticBlog
         public void AddUrlsFromRssFeed(string rssFeed)
         {
             RssReader reader = new RssReader(rssFeed);
+            
             reader.Execute();
             foreach(RssItem item in reader.Items)
             {
                 AddUrl(item.Link);
-                HtmlDocument doc = new HtmlDocument();
-                doc.LoadHtml(item.Description);
+                //HtmlDocument doc = new HtmlDocument();
+                //doc.LoadHtml(item.Description);
                 Posts.Add(new Post()
                 {
                     
-                    Abstract = doc.DocumentNode.InnerText,
-                    Title = item.Title
+                    //Abstract = doc.DocumentNode.InnerText,
+                    Abstract = item.Description,
+                    Title = item.Title,
+                    Link = item.Link,
+                    Date = item.Date
                 });
             }
         }

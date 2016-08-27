@@ -42,13 +42,24 @@
             this.consoleTextBox = new System.Windows.Forms.TextBox();
             this.operationsPanel = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.browserTab = new System.Windows.Forms.TabPage();
-            this.configTab = new System.Windows.Forms.TabPage();
             this.operationTab = new System.Windows.Forms.TabPage();
+            this.toDateTime = new System.Windows.Forms.DateTimePicker();
+            this.toLbl = new System.Windows.Forms.Label();
+            this.fromLbl = new System.Windows.Forms.Label();
+            this.fromDateTime = new System.Windows.Forms.DateTimePicker();
+            this.timeFilterButton = new System.Windows.Forms.Button();
+            this.generatePairsBtn = new System.Windows.Forms.Button();
+            this.postsGrid = new System.Windows.Forms.DataGridView();
+            this.Url = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Blog = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.configTab = new System.Windows.Forms.TabPage();
+            this.browserTab = new System.Windows.Forms.TabPage();
             this.operationsPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
-            this.browserTab.SuspendLayout();
             this.operationTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.postsGrid)).BeginInit();
+            this.browserTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // webView
@@ -58,7 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webView.Location = new System.Drawing.Point(6, 6);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(783, 347);
+            this.webView.Size = new System.Drawing.Size(674, 347);
             this.webView.TabIndex = 0;
             // 
             // progressBar
@@ -162,7 +173,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.consoleTextBox.Location = new System.Drawing.Point(6, 359);
             this.consoleTextBox.Name = "consoleTextBox";
-            this.consoleTextBox.Size = new System.Drawing.Size(783, 20);
+            this.consoleTextBox.Size = new System.Drawing.Size(674, 20);
             this.consoleTextBox.TabIndex = 10;
             this.consoleTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.consoleTextBox_KeyPress);
             // 
@@ -179,40 +190,25 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.browserTab);
-            this.tabControl.Controls.Add(this.configTab);
             this.tabControl.Controls.Add(this.operationTab);
+            this.tabControl.Controls.Add(this.configTab);
+            this.tabControl.Controls.Add(this.browserTab);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(754, 412);
+            this.tabControl.Size = new System.Drawing.Size(694, 412);
             this.tabControl.TabIndex = 12;
-            // 
-            // browserTab
-            // 
-            this.browserTab.Controls.Add(this.webView);
-            this.browserTab.Controls.Add(this.consoleTextBox);
-            this.browserTab.Location = new System.Drawing.Point(4, 22);
-            this.browserTab.Name = "browserTab";
-            this.browserTab.Padding = new System.Windows.Forms.Padding(3);
-            this.browserTab.Size = new System.Drawing.Size(795, 386);
-            this.browserTab.TabIndex = 0;
-            this.browserTab.Text = "Browser";
-            this.browserTab.UseVisualStyleBackColor = true;
-            // 
-            // configTab
-            // 
-            this.configTab.Location = new System.Drawing.Point(4, 22);
-            this.configTab.Name = "configTab";
-            this.configTab.Padding = new System.Windows.Forms.Padding(3);
-            this.configTab.Size = new System.Drawing.Size(795, 386);
-            this.configTab.TabIndex = 1;
-            this.configTab.Text = "Configuration";
-            this.configTab.UseVisualStyleBackColor = true;
             // 
             // operationTab
             // 
+            this.operationTab.Controls.Add(this.toDateTime);
+            this.operationTab.Controls.Add(this.toLbl);
+            this.operationTab.Controls.Add(this.fromLbl);
+            this.operationTab.Controls.Add(this.fromDateTime);
+            this.operationTab.Controls.Add(this.timeFilterButton);
+            this.operationTab.Controls.Add(this.generatePairsBtn);
+            this.operationTab.Controls.Add(this.postsGrid);
             this.operationTab.Controls.Add(this.feedsCheckedListBox);
             this.operationTab.Controls.Add(this.operationsPanel);
             this.operationTab.Controls.Add(this.progressBar);
@@ -222,24 +218,144 @@
             this.operationTab.Location = new System.Drawing.Point(4, 22);
             this.operationTab.Name = "operationTab";
             this.operationTab.Padding = new System.Windows.Forms.Padding(3);
-            this.operationTab.Size = new System.Drawing.Size(746, 386);
+            this.operationTab.Size = new System.Drawing.Size(686, 386);
             this.operationTab.TabIndex = 2;
             this.operationTab.Text = "Operations";
             this.operationTab.UseVisualStyleBackColor = true;
+            // 
+            // toDateTime
+            // 
+            this.toDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.toDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.toDateTime.Location = new System.Drawing.Point(591, 355);
+            this.toDateTime.Name = "toDateTime";
+            this.toDateTime.Size = new System.Drawing.Size(87, 20);
+            this.toDateTime.TabIndex = 19;
+            // 
+            // toLbl
+            // 
+            this.toLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.toLbl.AutoSize = true;
+            this.toLbl.Location = new System.Drawing.Point(565, 359);
+            this.toLbl.Name = "toLbl";
+            this.toLbl.Size = new System.Drawing.Size(20, 13);
+            this.toLbl.TabIndex = 18;
+            this.toLbl.Text = "To";
+            // 
+            // fromLbl
+            // 
+            this.fromLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.fromLbl.AutoSize = true;
+            this.fromLbl.Location = new System.Drawing.Point(436, 358);
+            this.fromLbl.Name = "fromLbl";
+            this.fromLbl.Size = new System.Drawing.Size(30, 13);
+            this.fromLbl.TabIndex = 17;
+            this.fromLbl.Text = "From";
+            // 
+            // fromDateTime
+            // 
+            this.fromDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.fromDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.fromDateTime.Location = new System.Drawing.Point(472, 355);
+            this.fromDateTime.Name = "fromDateTime";
+            this.fromDateTime.Size = new System.Drawing.Size(87, 20);
+            this.fromDateTime.TabIndex = 16;
+            // 
+            // timeFilterButton
+            // 
+            this.timeFilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.timeFilterButton.Location = new System.Drawing.Point(369, 354);
+            this.timeFilterButton.Name = "timeFilterButton";
+            this.timeFilterButton.Size = new System.Drawing.Size(61, 23);
+            this.timeFilterButton.TabIndex = 14;
+            this.timeFilterButton.Text = "Filter";
+            this.timeFilterButton.UseVisualStyleBackColor = true;
+            this.timeFilterButton.Click += new System.EventHandler(this.timeFilterButton_Click);
+            // 
+            // generatePairsBtn
+            // 
+            this.generatePairsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.generatePairsBtn.Location = new System.Drawing.Point(302, 354);
+            this.generatePairsBtn.Name = "generatePairsBtn";
+            this.generatePairsBtn.Size = new System.Drawing.Size(61, 23);
+            this.generatePairsBtn.TabIndex = 13;
+            this.generatePairsBtn.Text = "Generate";
+            this.generatePairsBtn.UseVisualStyleBackColor = true;
+            this.generatePairsBtn.Click += new System.EventHandler(this.generatePairsBtn_Click);
+            // 
+            // postsGrid
+            // 
+            this.postsGrid.AllowUserToAddRows = false;
+            this.postsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.postsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.postsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.postsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Url,
+            this.Blog,
+            this.Status});
+            this.postsGrid.Location = new System.Drawing.Point(302, 6);
+            this.postsGrid.Name = "postsGrid";
+            this.postsGrid.ReadOnly = true;
+            this.postsGrid.Size = new System.Drawing.Size(376, 341);
+            this.postsGrid.TabIndex = 12;
+            // 
+            // Url
+            // 
+            this.Url.HeaderText = "Url";
+            this.Url.Name = "Url";
+            this.Url.ReadOnly = true;
+            // 
+            // Blog
+            // 
+            this.Blog.HeaderText = "Blog";
+            this.Blog.Name = "Blog";
+            this.Blog.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // configTab
+            // 
+            this.configTab.Location = new System.Drawing.Point(4, 22);
+            this.configTab.Name = "configTab";
+            this.configTab.Padding = new System.Windows.Forms.Padding(3);
+            this.configTab.Size = new System.Drawing.Size(686, 386);
+            this.configTab.TabIndex = 1;
+            this.configTab.Text = "Configuration";
+            this.configTab.UseVisualStyleBackColor = true;
+            // 
+            // browserTab
+            // 
+            this.browserTab.Controls.Add(this.webView);
+            this.browserTab.Controls.Add(this.consoleTextBox);
+            this.browserTab.Location = new System.Drawing.Point(4, 22);
+            this.browserTab.Name = "browserTab";
+            this.browserTab.Padding = new System.Windows.Forms.Padding(3);
+            this.browserTab.Size = new System.Drawing.Size(686, 386);
+            this.browserTab.TabIndex = 0;
+            this.browserTab.Text = "Browser";
+            this.browserTab.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 412);
+            this.ClientSize = new System.Drawing.Size(694, 412);
             this.Controls.Add(this.tabControl);
             this.Name = "Main";
             this.Text = "Automatic Blog";
             this.operationsPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
+            this.operationTab.ResumeLayout(false);
+            this.operationTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.postsGrid)).EndInit();
             this.browserTab.ResumeLayout(false);
             this.browserTab.PerformLayout();
-            this.operationTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -263,6 +379,16 @@
         private System.Windows.Forms.TabPage browserTab;
         private System.Windows.Forms.TabPage configTab;
         private System.Windows.Forms.TabPage operationTab;
+        private System.Windows.Forms.DataGridView postsGrid;
+        private System.Windows.Forms.DateTimePicker toDateTime;
+        private System.Windows.Forms.Label toLbl;
+        private System.Windows.Forms.Label fromLbl;
+        private System.Windows.Forms.DateTimePicker fromDateTime;
+        private System.Windows.Forms.Button timeFilterButton;
+        private System.Windows.Forms.Button generatePairsBtn;
+        private System.Windows.Forms.DataGridViewLinkColumn Url;
+        private System.Windows.Forms.DataGridViewLinkColumn Blog;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
     }
 }
 
