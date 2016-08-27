@@ -1,13 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <post class="FrontEndAutomation.FunctionStatement">
-  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWhileStatement">
     <Condition>document.readyState != 'complete'</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
   </waitWhilePostComplete>
-  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
-    <FileName>jquery-2.1.4.js</FileName>
-  </injectScript>
-  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWhileStatement">
     <Condition>$('a:contains("نوشته جدید")').length == 0</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
   </waitWhilePostComplete>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
@@ -18,11 +25,13 @@
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
     <Count>8</Count>
   </waitWhileLogin>
-  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
-    <FileName>jquery-2.1.4.js</FileName>
-  </injectScript>
-  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
-    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWhileStatement">
+    <Condition>$('#linkextended').length == 0</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
   </waitWhilePostComplete>
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
     <Count>0</Count>
