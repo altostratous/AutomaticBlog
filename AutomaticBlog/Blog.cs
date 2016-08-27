@@ -8,6 +8,14 @@ namespace AutomaticBlog
 {
     public class Blog
     {
+        public Blog()
+        {
+            Url = "New blog.";
+            Username = "";
+            Password = "";
+            LoginScript = "";
+            PostScript = "";
+        }
         public string Url { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }

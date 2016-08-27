@@ -36,6 +36,7 @@ namespace AutomaticBlog
             posts = new List<Post>();
             loadConfiguration("Config.xml");
             configurationEditor = new ConfigurationEditor("Config.xml", "Scripts");
+            loadConfigEditor();
             // for test 
             //posts.Add(new Post()
             //{
@@ -330,24 +331,29 @@ namespace AutomaticBlog
 
         private void loadBtn_Click(object sender, EventArgs e)
         {
+            loadConfigEditor();
+        }
+
+        private void loadConfigEditor()
+        {
             configurationEditor.Load();
             blogsListBox.Items.Clear();
             feedList.Items.Clear();
-            foreach(string url in configurationEditor.Blogs.Keys)
+            foreach (string url in configurationEditor.Blogs.Keys)
             {
                 blogsListBox.Items.Add(url);
             }
-            foreach(string feed in configurationEditor.Feeds)
+            foreach (string feed in configurationEditor.Feeds)
             {
                 feedList.Items.Add(feed);
             }
             blogTypeComboBox.Items.Clear();
             HashSet<string> blogTypes = new HashSet<string>();
-            foreach(string scriptName in Directory.GetFiles(configurationEditor.ScriptsDirectory))
+            foreach (string scriptName in Directory.GetFiles(configurationEditor.ScriptsDirectory))
             {
-                blogTypes.Add(Path.GetFileNameWithoutExtension(scriptName).Replace("Login","").Replace("Post", ""));
+                blogTypes.Add(Path.GetFileNameWithoutExtension(scriptName).Replace("Login", "").Replace("Post", ""));
             }
-            foreach(string blogType in blogTypes)
+            foreach (string blogType in blogTypes)
             {
                 blogTypeComboBox.Items.Add(blogType);
             }
@@ -423,6 +429,46 @@ namespace AutomaticBlog
         private string loginScriptFromBlogType(string selectedItem)
         {
             return Path.Combine(configurationEditor.ScriptsDirectory, selectedItem + "Login.xml");
+        }
+
+        private void addFeed_Click(object sender, EventArgs e)
+        {
+            if(feedList.Items.Contains("New feed."))
+            {
+                MessageBox.Show("First configure the last feed.");
+            }
+            feedList.Items.Add("New feed.");
+            configurationEditor.Feeds.Add("New feed.");
+        }
+
+        private void addBlogBtn_Click(object sender, EventArgs e)
+        {
+            try {
+                configurationEditor.Blogs.Add("New blog.", new AutomaticBlog.Blog());
+                 blogsListBox.Items.Add("New blog.");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("First configure the last added blog.");
+            }
+        }
+
+        private void removeFeedBtn_Click(object sender, EventArgs e)
+        {
+            if (feedList.SelectedIndex != -1)
+            {
+                configurationEditor.Feeds.Remove((string)feedList.SelectedItem);
+                feedList.Items.RemoveAt(feedList.SelectedIndex);
+            }
+        }
+
+        private void removeBlogsBtn_Click(object sender, EventArgs e)
+        {
+            if(blogsListBox.SelectedIndex != -1)
+            {
+                configurationEditor.Blogs.Remove((string)blogsListBox.SelectedItem);
+                blogsListBox.Items.RemoveAt(blogsListBox.SelectedIndex);
+            }
         }
     }
 }
