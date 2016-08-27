@@ -46,7 +46,7 @@ namespace FrontEndAutomation
                 }
             }
         }
-
+        
         public override void SetVariables()
         {
             try {

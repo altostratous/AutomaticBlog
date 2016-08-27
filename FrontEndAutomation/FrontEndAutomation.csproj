@@ -74,6 +74,7 @@
     <Compile Include="Scope.cs" />
     <Compile Include="Statement.cs" />
     <Compile Include="XulFxExecutor.cs" />
+    <Compile Include="XulFxExecutorTimeOutException.cs" />
     <Compile Include="XulFxJavaScriptInjectionStatement.cs" />
     <Compile Include="XulFxJavaScriptStatement.cs" />
     <Compile Include="XulFxWaitForAWhileStatement.cs" />

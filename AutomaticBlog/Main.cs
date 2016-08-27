@@ -36,15 +36,15 @@ namespace AutomaticBlog
             loadConfiguration("Config.xml");
 
             // for test 
-            posts.Add(new Post()
-            {
-                Title = "hsh",
-                Abstract = "hsdhl",
-                Content = "sdkfj",
-                ReadMore = "dljgas"
-            });
+            //posts.Add(new Post()
+            //{
+            //    Title = "hsh",
+            //    Abstract = "hsdhl",
+            //    Content = "sdkfj",
+            //    ReadMore = "dljgas"
+            //});
         }
-
+        
         private void loadConfiguration(string confFileName)
         {
             feedsCheckedListBox.Items.Clear();
@@ -169,21 +169,65 @@ namespace AutomaticBlog
                 {
                     Post post = posts.Find(item => { return item.Link == (string)row.Cells["Url"].Value; });
                     AutomaticBlog.Blog blog = blogs[row.Cells["Blog"].Value.ToString()];
-                    if(currentBlog != blog)
+                    if (currentBlog != blog)
                     {
                         poster = new BlogPoster(blog, executor);
-                        webView.Invoke(new Action(delegate {
-                            poster.Login();
+                        if (fetchBackgroundWorker.CancellationPending)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                        webView.Invoke(new Action(delegate
+                        {
+                            try
+                            {
+                                poster.Login();
+                            }
+                            catch (Exception ex)
+                            {
+                                log(ex.Message);
+                            }
                         }));
+                        if (fetchBackgroundWorker.CancellationPending)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
                         currentBlog = blog;
                     }
-                    webView.Invoke(new Action(delegate {
-                        poster.Post(post);
+                    if (fetchBackgroundWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    webView.Invoke(new Action(delegate
+                    {
+                        try
+                        {
+                            poster.Post(post);
+                            checkPostBlogPair(currentBlog, post);
+                        }
+                        catch (Exception ex)
+                        {
+                            currentBlog = null;
+                            safeRestartBrowser();
+                            log(ex.Message);
+                        }
                     }));
-
-                    checkPostBlogPair(currentBlog, post);
                 }
                 postBackgroundWorker.ReportProgress((row.Index + 1) * 100 / postsGrid.RowCount);
+            }
+        }
+
+        private void safeRestartBrowser()
+        {
+            Common.RemoveAll();
+            webView.Navigate("about:blank");
+            for (int i = 0; i < 10; i++)
+            {
+                Gecko.Xpcom.DoEvents();
+                Application.DoEvents();
+                System.Threading.Thread.Sleep(Common.WAIT_INTERVAL);
             }
         }
 
@@ -229,14 +273,7 @@ namespace AutomaticBlog
         private void postFeedsButton_Click(object sender, EventArgs e)
         {
             // restart the browser
-            Common.RemoveAll();
-            webView.Navigate("about:blank");
-            for(int i = 0; i < 10; i++)
-            {
-                Gecko.Xpcom.DoEvents();
-                Application.DoEvents();
-                System.Threading.Thread.Sleep(Common.WAIT_INTERVAL);
-            }
+            safeRestartBrowser();
             postsToPostCount = posts.Count * blogsCheckListBox.CheckedIndices.Count;
             postBackgroundWorker.RunWorkerAsync();
             operationsPanel.Enabled = false;

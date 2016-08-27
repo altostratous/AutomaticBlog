@@ -5,6 +5,7 @@ namespace FrontEndAutomation
     public class Common
     {
         public static int WAIT_INTERVAL = 100;
+        public static int WAIT_TIMEOUT_COUNT = 200;
         public static void RemoveAll()
         {
             Gecko.Xpcom.GetService<nsICookieManager>("@mozilla.org/cookiemanager;1").removeAll();

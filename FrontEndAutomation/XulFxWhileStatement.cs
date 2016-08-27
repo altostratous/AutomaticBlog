@@ -21,6 +21,7 @@ namespace FrontEndAutomation
         
         public object Process(Executor executor)
         {
+            int counter = 0;
             while (true)
             {
                 try {
@@ -37,6 +38,11 @@ namespace FrontEndAutomation
                     Gecko.Xpcom.DoEvents(true);
                     Gecko.Xpcom.DoEvents();
                     System.Windows.Forms.Application.DoEvents();
+                }
+                counter++;
+                if(Common.WAIT_TIMEOUT_COUNT < counter)
+                {
+                    throw new XulFxExecutorTimeOutException("While statement timed out. ");
                 }
             }
             return null;
