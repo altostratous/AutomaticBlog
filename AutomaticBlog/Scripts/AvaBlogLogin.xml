@@ -5,6 +5,10 @@
       window.location.href = 'http://avablog.ir/login.php';
     </Script>
   </goToLoginPage>
+
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>10</Count>
+  </goToLoginPage>
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>document.getElementsByTagName("input").length != 3</Condition>
   </waitWhileLogin>
@@ -19,6 +23,10 @@
     </Script>
   </enterLogin>
 
+
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>10</Count>
+  </goToLoginPage>
   <waitWhileLoginComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>($('input[name=submit]').length != 1)</Condition>
   </waitWhileLoginComplete>

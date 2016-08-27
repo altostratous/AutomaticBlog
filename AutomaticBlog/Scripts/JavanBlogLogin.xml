@@ -5,6 +5,9 @@
       window.location.href = 'http://javanblog.ir';
     </Script>
   </goToLoginPage>
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>20</Count>
+  </goToLoginPage>
   <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
     <FileName>jquery-2.1.4.js</FileName>
   </injectScript>
@@ -19,7 +22,14 @@
     </Script>
   </enterLogin>
 
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>10</Count>
+  </goToLoginPage>
   <waitWhileLoginComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>($('input[name=submit]').length != 1)</Condition>
   </waitWhileLoginComplete>
+
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>20</Count>
+  </goToLoginPage>
 </login>

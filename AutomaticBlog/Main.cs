@@ -227,6 +227,15 @@ namespace AutomaticBlog
 
         private void postFeedsButton_Click(object sender, EventArgs e)
         {
+            // restart the browser
+            Common.RemoveAll();
+            webView.Navigate("about:blank");
+            for(int i = 0; i < 10; i++)
+            {
+                Gecko.Xpcom.DoEvents();
+                Application.DoEvents();
+                System.Threading.Thread.Sleep(Common.WAIT_INTERVAL);
+            }
             postsToPostCount = posts.Count * blogsCheckListBox.CheckedIndices.Count;
             postBackgroundWorker.RunWorkerAsync();
         }

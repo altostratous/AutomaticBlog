@@ -21,7 +21,17 @@
   </enterLogin>
 
   <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
-    <Count>20</Count>
+    <Count>40</Count>
   </goToLoginPage>
-  
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      if($('input').length == 1){ 
+        $('input').val('خورش سبزی');
+        $('input[type=submit]').trigger('click');
+      }
+    </Script>
+  </enterLogin>
 </login>

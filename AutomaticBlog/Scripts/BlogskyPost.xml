@@ -13,6 +13,9 @@
   <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>$('#post-title').val().length != 0</Condition>
   </waitWhilePostComplete>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('img[src$="/content/editor/images/ed_more.gif"]').length == 0</Condition>
+  </waitWhilePostComplete>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
       $('#post-title').val($('#FrontEndAutomation_title').html());

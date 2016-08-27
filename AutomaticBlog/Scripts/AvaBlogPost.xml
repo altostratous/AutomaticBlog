@@ -29,14 +29,14 @@
     </Script>
   </postContent>
   <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
-    <Condition>$('#ntex2').length == 0</Condition>
+    <Condition>$('#mtex2').length == 0</Condition>
   </waitWhilePostComplete>
   <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
       $('#dfgfgf')[0].click();
       $('#mtitle').val($('#FrontEndAutomation_title').html());
       // temporarily without readmore
-      $('#ntex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      $('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
       //$('#ntex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
       //$('#ntex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
       $('input.submit')[0].click();
