@@ -174,7 +174,7 @@ namespace AutomaticBlog
                     if (currentBlog != blog)
                     {
                         poster = new BlogPoster(blog, executor);
-                        if (fetchBackgroundWorker.CancellationPending)
+                        if (postBackgroundWorker.CancellationPending)
                         {
                             e.Cancel = true;
                             return;
@@ -190,14 +190,14 @@ namespace AutomaticBlog
                                 log(ex.Message);
                             }
                         }));
-                        if (fetchBackgroundWorker.CancellationPending)
+                        if (postBackgroundWorker.CancellationPending)
                         {
                             e.Cancel = true;
                             return;
                         }
                         currentBlog = blog;
                     }
-                    if (fetchBackgroundWorker.CancellationPending)
+                    if (postBackgroundWorker.CancellationPending)
                     {
                         e.Cancel = true;
                         return;

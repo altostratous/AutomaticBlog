@@ -54,7 +54,11 @@ namespace AutomaticBlog
             int counter = 0;
             foreach (string url in urls)
             {
-                NReadability.WebTranscodingInput input = new NReadability.WebTranscodingInput(url);
+                NReadability.WebTranscodingInput input = null;
+                if (url.EndsWith(".rss"))
+                    input = new NReadability.WebTranscodingInput(url.Substring(0, url.Length - 4));
+                else
+                    input = new NReadability.WebTranscodingInput(url);
 
                 string page = new NReadability.NReadabilityWebTranscoder().Transcode(input).ExtractedContent;
 
