@@ -98,7 +98,8 @@ namespace AutomaticBlog
                 //foreach(HtmlNode node in  document.DocumentNode.SelectNodes("//form"))
                 //{
                 //    gitRemove(node);
-                //}
+
+                makeReferencesAbsolute(document, post.Link);
                 post.Content = document.DocumentNode.OuterHtml;
                 post.Content = removeForms(post.Content);
             }
@@ -108,6 +109,25 @@ namespace AutomaticBlog
             {
                 post.ReadMore = extractReadMore(post);
             }
+        }
+
+        private void makeReferencesAbsolute(HtmlDocument document, string baseAddress)
+        {
+            foreach (HtmlNode node in document.DocumentNode.SelectNodes("//*"))
+            {
+                foreach (HtmlAttribute attr in node.Attributes)
+                {
+                    if (attr.Name == "src" || attr.Name == "href")
+                    {
+                        attr.Value = getAbsoluteAddress(baseAddress, attr.Value);
+                    }
+                }
+            }
+        }
+
+        private string getAbsoluteAddress(string baseAddress, string value)
+        {
+            return new Uri(new Uri(baseAddress), value).ToString();
         }
 
         private string removeForms(string content)
