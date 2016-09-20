@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using HtmlAgilityPack;
+using System.Text.RegularExpressions;
 
 namespace AutomaticBlog
 {
@@ -255,32 +256,28 @@ namespace AutomaticBlog
 
         private string extractReadMore(Post post)
         {
-            string[] wordsInAbstract = post.Abstract.Split(Seperators);
-            string res = post.Content;
-            foreach(string wordInAbstract in wordsInAbstract)
+            HtmlDocument document = new HtmlDocument();
+            document.LoadHtml(post.Abstract);
+            string[] wordsInAbstract = document.DocumentNode.InnerText.Split(Seperators);
+            string[] contentParts = Regex.Split(post.Content, "(<.*>)");
+            string result = "";
+            foreach (string contentPart in contentParts)
             {
-                if (res.Contains(wordInAbstract))
+                int counter = 0;
+                foreach (string wordInAbstract in wordsInAbstract)
                 {
-                    int lengthAdder = 0;
-                    if(Seperators.Contains( res[res.IndexOf(wordInAbstract) + wordInAbstract.Length]))
+                    if (contentPart.Contains(wordInAbstract))
                     {
-                        lengthAdder = 1;
+                        counter+= wordInAbstract.Length;
                     }
-                    res = res.Remove(res.IndexOf(wordInAbstract), wordInAbstract.Length + lengthAdder);
+                }
+                if (counter / (float)contentPart.Length < 0.1)
+                {
+                    //Console.WriteLine(counter / (float)contentPart.Length);
+                    result += contentPart;
                 }
             }
-            while(res.Length > 0)
-            {
-                if (Seperators.Contains(res[0]))
-                {
-                    res = res.Substring(1);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            return res;
+            return result;
         }
 
         private string load(string url)
