@@ -5,6 +5,14 @@
       window.location.href = 'http://lineblog.ir/action.php';
     </Script>
   </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWhileStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
+  </waitWhileLogin>
   <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
   </waitWhilePostComplete>
