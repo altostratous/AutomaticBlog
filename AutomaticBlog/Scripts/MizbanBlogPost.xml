@@ -2,7 +2,7 @@
 <post class="FrontEndAutomation.FunctionStatement">
   <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
-      window.location.href = 'http://lineblog.ir/action.php';
+      window.location.href = 'http://mizbanblog.com/action.php';
     </Script>
   </goToLoginPage>
   <waitWhileLogin class="FrontEndAutomation.XulFxWhileStatement">
@@ -43,13 +43,12 @@
       //$('#dfgfgf')[0].click();
       $('#mtitle').val($('#FrontEndAutomation_title').html());
       // temporarily without readmore
-      $('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
-      //$('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
-      //$('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
       $('input[type=submit]')[0].click();
     </Script>
   </postContent>
-
   <!--<waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>($('div.title').length == 0)</Condition>
   </waitWhilePostComplete>-->

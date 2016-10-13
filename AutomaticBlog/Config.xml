@@ -17,6 +17,13 @@
       <post>Scripts/ParsiBlogPost.xml</post>
     </blog>
     <blog>
+      <url>http://mizbanblog.com</url>
+      <username>alto</username>
+      <password>poorpoor</password>
+      <login>Scripts/MizbanBlogLogin.xml</login>
+      <post>Scripts/MizbanBlogPost.xml</post>
+    </blog>
+    <blog>
       <url>http://parsablog.com</url>
       <username>alto</username>
       <password>poorpoor</password>
