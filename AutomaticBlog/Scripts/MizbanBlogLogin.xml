@@ -25,7 +25,7 @@
   </goToLoginPage>
   <!--<waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
-  </waitWhilePostComplete>-->
+  </waitWhilePostComplete>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
       if($('input').length == 1){ 
@@ -33,5 +33,5 @@
         $('input[type=submit]').trigger('click');
       }
     </Script>
-  </enterLogin>
+  </enterLogin>-->
 </login>

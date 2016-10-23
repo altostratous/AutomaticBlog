@@ -22,9 +22,15 @@ namespace FrontEndAutomation
             //if(DoEventsBeforeExecute)
             //    Gecko.Xpcom.DoEvents();
             SetVariables();
-            object res = Window.Evaluate(code);
-            GetVariables();
-            return res;
+            try {
+                object res = Window.Evaluate(code);
+                GetVariables();
+                return res;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("JavaScript Error in:\n" + code, ex);
+            }
         }
 
         private void GetVariables()

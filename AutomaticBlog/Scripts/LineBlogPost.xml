@@ -46,6 +46,10 @@
       $('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
       //$('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
       //$('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+    </Script>
+  </postContent>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
       $('input[type=submit]')[0].click();
     </Script>
   </postContent>

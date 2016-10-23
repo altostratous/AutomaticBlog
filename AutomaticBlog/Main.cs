@@ -107,6 +107,9 @@ namespace AutomaticBlog
 
         private void log(string toLog)
         {
+            StreamWriter writer = new StreamWriter("log.txt", true);
+            writer.WriteLine(toLog);
+            writer.Close();
             logListBox.BeginInvoke(new Action(delegate {
                 if (toLog != null)
                     logListBox.Items.Add(toLog);

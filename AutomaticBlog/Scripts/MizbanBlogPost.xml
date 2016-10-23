@@ -38,15 +38,70 @@
   <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>$('#mtex2').length == 0</Condition>
   </waitWhilePostComplete>
+
+  <waitWhileLogin class="FrontEndAutomation.XulFxWhileStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
+  </waitWhileLogin>
+
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>40</Count>
+  </goToLoginPage>
   <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
       //$('#dfgfgf')[0].click();
       $('#mtitle').val($('#FrontEndAutomation_title').html());
       // temporarily without readmore
       //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      // $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      // $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      // $('input[type=submit]')[0].click();
+    </Script>
+  </postContent>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      //$('#dfgfgf')[0].click();
+      // $('#mtitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
       $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      // $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      // $('input[type=submit]')[0].click();
+    </Script>
+  </postContent>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      //$('#dfgfgf')[0].click();
+      // $('#mtitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      // $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
       $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
-      $('input[type=submit]')[0].click();
+      // $('input[type=submit]')[0].click();
+    </Script>
+  </postContent>
+
+  <waitWhileLogin class="FrontEndAutomation.XulFxWhileStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
+  </waitWhileLogin>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      //$('#dfgfgf')[0].click();
+      // $('#mtitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      // $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      // $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      $('input[type=submit]').click();
     </Script>
   </postContent>
   <!--<waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
