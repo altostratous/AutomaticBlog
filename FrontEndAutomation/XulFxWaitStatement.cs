@@ -39,7 +39,7 @@ namespace FrontEndAutomation
                 counter++;
                 if(counter > Common.WAIT_TIMEOUT_COUNT)
                 {
-                    throw new XulFxExecutorTimeOutException("Wait statement timed out.");
+                    throw new XulFxExecutorTimeOutException(Condition + " timed out.");
                 }
             }
             return null;

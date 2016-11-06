@@ -18,8 +18,8 @@
   </waitWhileLogin>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
-      $('#usid').val($('#FrontEndAutomation_username').html());
-      $('#upass').val($('#FrontEndAutomation_password').html());
+      $('#usrid').val($('#FrontEndAutomation_username').html());
+      $('#usrpass').val($('#FrontEndAutomation_password').html());
       $('input[type=submit]').trigger('click');
     </Script>
   </enterLogin>

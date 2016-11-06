@@ -74,6 +74,8 @@
             this.blogsListBox = new System.Windows.Forms.ListBox();
             this.feedList = new System.Windows.Forms.ListBox();
             this.browserTab = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.operationsPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.operationTab.SuspendLayout();
@@ -82,6 +84,7 @@
             this.editBlogGroupBox.SuspendLayout();
             this.editFeedGroupBox.SuspendLayout();
             this.browserTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // webView
@@ -343,6 +346,8 @@
             // 
             // configTab
             // 
+            this.configTab.Controls.Add(this.numericUpDown1);
+            this.configTab.Controls.Add(this.label5);
             this.configTab.Controls.Add(this.addBlogBtn);
             this.configTab.Controls.Add(this.removeBlogsBtn);
             this.configTab.Controls.Add(this.removeFeedBtn);
@@ -499,7 +504,7 @@
             this.editFeedGroupBox.Controls.Add(this.feedUrlTextBox);
             this.editFeedGroupBox.Location = new System.Drawing.Point(8, 148);
             this.editFeedGroupBox.Name = "editFeedGroupBox";
-            this.editFeedGroupBox.Size = new System.Drawing.Size(285, 201);
+            this.editFeedGroupBox.Size = new System.Drawing.Size(285, 170);
             this.editFeedGroupBox.TabIndex = 4;
             this.editFeedGroupBox.TabStop = false;
             this.editFeedGroupBox.Text = "Edit Feed";
@@ -569,6 +574,24 @@
             this.browserTab.Text = "Browser";
             this.browserTab.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 329);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Post limit:";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::AutomaticBlog.Properties.Settings.Default, "PostLimitPerFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown1.Location = new System.Drawing.Point(69, 327);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(224, 20);
+            this.numericUpDown1.TabIndex = 10;
+            this.numericUpDown1.Value = global::AutomaticBlog.Properties.Settings.Default.PostLimitPerFeed;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -577,18 +600,21 @@
             this.Controls.Add(this.tabControl);
             this.Name = "Main";
             this.Text = "Automatic Blog";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.operationsPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.operationTab.ResumeLayout(false);
             this.operationTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.postsGrid)).EndInit();
             this.configTab.ResumeLayout(false);
+            this.configTab.PerformLayout();
             this.editBlogGroupBox.ResumeLayout(false);
             this.editBlogGroupBox.PerformLayout();
             this.editFeedGroupBox.ResumeLayout(false);
             this.editFeedGroupBox.PerformLayout();
             this.browserTab.ResumeLayout(false);
             this.browserTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -641,6 +667,8 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox usernameTextBox;
         private System.Windows.Forms.TextBox urlTextBox;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label5;
     }
 }
 

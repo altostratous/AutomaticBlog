@@ -135,13 +135,14 @@ namespace AutomaticBlog
                         return;
                     }
                     log("Fetching urls from feed: " + feed);
-                    postExtractor.AddUrlsFromRssFeed(feed);
+                    int totalCount = postExtractor.AddUrlsFromRssFeed(feed, (int)Properties.Settings.Default.PostLimitPerFeed);
                     if (fetchBackgroundWorker.CancellationPending)
                     {
                         e.Cancel = true;
                         return;
                     }
-                    log("Processing posts from feed: " + feed);
+                    log("Number of total posts " + totalCount.ToString());
+                    log("Processing " + Properties.Settings.Default.PostLimitPerFeed.ToString() + " posts from feed: " + feed); ;
                     postExtractor.Process();
                     foreach (Post post in postExtractor.Posts)
                     {
@@ -472,6 +473,11 @@ namespace AutomaticBlog
                 configurationEditor.Blogs.Remove((string)blogsListBox.SelectedItem);
                 blogsListBox.Items.RemoveAt(blogsListBox.SelectedIndex);
             }
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
     }
 }

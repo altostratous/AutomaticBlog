@@ -36,18 +36,24 @@
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
     <Count>0</Count>
   </waitWhileLogin>
-  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+  <!--<waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>typeof tinyMCE.getInstanceById('txtContent') !== typeof undefined ? false : true;</Condition>
-  </waitWhilePostComplete>
+  </waitWhilePostComplete>-->
+
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>20</Count>
+  </waitWhileLogin>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
 
       $('#linkextended')[0].click();
       $('#txtTitle').val($('#FrontEndAutomation_title').html());
+
+      $('#txtPostContent').val($('#FrontEndAutomation_abstract').html());
       // temporarily without readmore
       //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
-      tinyMCE.getInstanceById('txtContent').setContent($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
-      
+      //tinyMCE.getInstanceById('txtContent').setContent($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+
     </Script>
   </enterLogin>
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
@@ -58,8 +64,9 @@
   </waitWhilePostComplete>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
-      tinyMCE.getInstanceById('txtExtended').setContent($('#FrontEndAutomation_content').html(), {format : 'raw'});
-      
+      $('#txtExtended').val($('#FrontEndAutomation_content').html());
+      //tinyMCE.getInstanceById('txtExtended').setContent($('#FrontEndAutomation_content').html(), {format : 'raw'});
+
     </Script>
   </enterLogin>
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">

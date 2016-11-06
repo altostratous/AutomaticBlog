@@ -29,11 +29,12 @@ namespace AutomaticBlog
         {
             urls.Add(url);
         }
-        public void AddUrlsFromRssFeed(string rssFeed)
+        public int AddUrlsFromRssFeed(string rssFeed, int limit)
         {
             RssReader reader = new RssReader(rssFeed);
             
             reader.Execute();
+            int counter = 0;
             foreach(RssItem item in reader.Items)
             {
                 AddUrl(item.Link);
@@ -48,7 +49,13 @@ namespace AutomaticBlog
                     Link = item.Link,
                     Date = item.Date
                 });
+                counter++;
+                if (counter >= limit)
+                {
+                    break;
+                }
             }
+            return reader.Items.Count;
         }
         public void Process()
         {
