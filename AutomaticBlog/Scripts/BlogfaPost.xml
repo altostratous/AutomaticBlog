@@ -49,7 +49,7 @@
       $('#linkextended')[0].click();
       $('#txtTitle').val($('#FrontEndAutomation_title').html());
 
-      $('#txtPostContent').val($('#FrontEndAutomation_abstract').html());
+      $('#txtPostBody').val($('#FrontEndAutomation_abstract').html());
       // temporarily without readmore
       //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
       //tinyMCE.getInstanceById('txtContent').setContent($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
@@ -60,11 +60,11 @@
     <Count>0</Count>
   </waitWhileLogin>
   <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
-    <Condition>typeof tinyMCE.getInstanceById('txtExtended') !== typeof undefined ? false : true;</Condition>
+    <Condition>typeof $('#txtPostExtended') !== typeof undefined ? false : true;</Condition>
   </waitWhilePostComplete>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>
-      $('#txtExtended').val($('#FrontEndAutomation_content').html());
+      $('#txtPostExtended').val($('#FrontEndAutomation_content').html());
       //tinyMCE.getInstanceById('txtExtended').setContent($('#FrontEndAutomation_content').html(), {format : 'raw'});
 
     </Script>
@@ -73,8 +73,12 @@
     <Count>30</Count>
   </waitWhileLogin>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
-    <Script>$('input[type=submit]').trigger('click');</Script>
+    <Script>document.getElementById('btnPublish').click();</Script>
   </enterLogin>
+  
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('td:contains("نوشته ارسالی به  ثبت رسید و وبلاگ بازسازی شد")').length == 0)</Condition>
+  </waitWhilePostComplete>
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
     <Count>5</Count>
   </waitWhileLogin>
