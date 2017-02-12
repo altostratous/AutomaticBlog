@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<post class="FrontEndAutomation.FunctionStatement">
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://www.rozblog.com/panel';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWhileStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
+  </waitWhileLogin>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('a:contains("مطلب جدید")').length == 0</Condition>
+  </waitWhilePostComplete>
+  <clickAddPost class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('a:contains("مطلب جدید")')
+      [0].click()
+    </Script>
+  </clickAddPost>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $('#dfgfgf')[0] !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#dfgfgf').length != 1</Condition>
+  </waitWhilePostComplete>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('#dfgfgf')[0].click();
+    </Script>
+  </postContent>
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>$('#mtex2').length == 0</Condition>
+  </waitWhilePostComplete>
+
+  <waitWhileLogin class="FrontEndAutomation.XulFxWhileStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
+  </waitWhileLogin>
+
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>40</Count>
+  </goToLoginPage>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      //$('#dfgfgf')[0].click();
+      $('#mtitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      // $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      // $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      // $('input[type=submit]')[0].click();
+    </Script>
+  </postContent>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      //$('#dfgfgf')[0].click();
+      // $('#mtitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      // $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      // $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      // $('input[type=submit]')[0].click();
+      tinyMCE.getInstanceById('mtex').setContent($('#FrontEndAutomation_readmore').html());
+    </Script>
+  </postContent>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      //$('#dfgfgf')[0].click();
+      // $('#mtitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      // $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      // $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      // $('input[type=submit]')[0].click();
+      tinyMCE.getInstanceById('mtex2').setContent($('#FrontEndAutomation_readmore').html());
+    </Script>
+  </postContent>
+
+  <waitWhileLogin class="FrontEndAutomation.XulFxWhileStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
+  </waitWhileLogin>
+  <postContent class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      //$('#dfgfgf')[0].click();
+      // $('#mtitle').val($('#FrontEndAutomation_title').html());
+      // temporarily without readmore
+      //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
+      // $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      // $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      $('input[type=submit]').click();
+    </Script>
+  </postContent>
+  
+  
+  <!--<waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>($('div.title').length == 0)</Condition>
+  </waitWhilePostComplete>-->
+  
+  
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition> $('b:contains("ارسال شد")').length == 0</Condition>
+  </waitWhilePostComplete>-->
+</post>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<login class="FrontEndAutomation.FunctionStatement">
+  <goToLoginPage class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      window.location.href = 'http://www.rozblog.com/login.php';
+    </Script>
+  </goToLoginPage>
+  <waitWhileLogin class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>document.getElementsByTagName("input").length == 0</Condition>
+  </waitWhileLogin>
+  <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+    <FileName>jquery-2.1.4.js</FileName>
+  </injectScript>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      $('input[name=username]').val($('#FrontEndAutomation_username').html());
+      $('input[name=password]').val($('#FrontEndAutomation_password').html());
+      //$('input[type=submit]').trigger('click');
+      $('input[type=submit]')[0].click();
+    </Script>
+  </enterLogin>
+
+  <goToLoginPage class="FrontEndAutomation.XulFxWaitForAWhileStatement">
+    <Count>40</Count>
+  </goToLoginPage>
+  <!--<waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+    <Condition>typeof $ !== typeof undefined ? false : true;</Condition>
+  </waitWhilePostComplete>
+  <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
+    <Script>
+      if($('input').length == 1){ 
+        $('input').val('خورش سبزی');
+        $('input[type=submit]').trigger('click');
+      }
+    </Script>
+  </enterLogin>-->
+</login>

@@ -86,5 +86,12 @@
       <login>Scripts/PishroBlogLogin.xml</login>
       <post>Scripts/PishroBlogPost.xml</post>
     </blog>
+    <blog>
+      <url>http://www.rozblog.com/login.php</url>
+      <username>alto</username>
+      <password>123Poor321</password>
+      <login>Scripts/RozBlogLogin.xml</login>
+      <post>Scripts/RozBlogPost.xml</post>
+    </blog>
   </blogs>
 </config>
