@@ -70,14 +70,23 @@
     </Script>
   </enterLogin>
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
-    <Count>30</Count>
+    <Count>40</Count>
   </waitWhileLogin>
   <enterLogin class="FrontEndAutomation.XulFxJavaScriptStatement">
     <Script>document.getElementById('btnPublish').click();</Script>
   </enterLogin>
+
+  <waitWhilePostComplete class="FrontEndAutomation.XulFxWhileStatement">
+    <Condition>($('td:contains("بازساز")').length == 0)</Condition>
+    <Do>
+      <injectScript class="FrontEndAutomation.XulFxJavaScriptInjectionStatement">
+        <FileName>jquery-2.1.4.js</FileName>
+      </injectScript>
+    </Do>
+  </waitWhilePostComplete>
   
   <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
-    <Condition>($('td:contains("نوشته ارسالی به  ثبت رسید و وبلاگ بازسازی شد")').length == 0)</Condition>
+    <Condition>($('td:contains("بازساز")').length == 0)</Condition>
   </waitWhilePostComplete>
   <waitWhileLogin class="FrontEndAutomation.XulFxWaitForAWhileStatement">
     <Count>5</Count>

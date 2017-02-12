@@ -24,7 +24,7 @@
       $('img[src$="images/action/post.png"]').trigger('click');
     </Script>
   </clickAddPost>
-  <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
+  <!--<waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>typeof $('#dfgfgf')[0] !== typeof undefined ? false : true;</Condition>
   </waitWhilePostComplete>
   <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
@@ -34,7 +34,7 @@
     <Script>
       $('#dfgfgf')[0].click();
     </Script>
-  </postContent>
+  </postContent>-->
   <waitWhilePostComplete class="FrontEndAutomation.XulFxWaitStatement">
     <Condition>$('#mtex2').length == 0</Condition>
   </waitWhilePostComplete>
@@ -68,7 +68,8 @@
       // $('#mtitle').val($('#FrontEndAutomation_title').html());
       // temporarily without readmore
       //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
-      $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      //$('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
+      document.getElementById('mtex').innerHTML = document.getElementById('FrontEndAutomation_content').innerHTML;
       // $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
       // $('input[type=submit]')[0].click();
     </Script>
@@ -80,7 +81,8 @@
       // temporarily without readmore
       //$('#mtex').val($('#FrontEndAutomation_content').html() , {format : 'raw'});
       // $('#mtex').val($('#FrontEndAutomation_abstract').html() , {format : 'raw'});
-      $('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      //$('#mtex2').val($('#FrontEndAutomation_readmore').html() , {format : 'raw'});
+      //document.getElementById('mtex2').innerHTML = document.getElemementById('FrontEndAutomation_readmore').innerHTML;
       // $('input[type=submit]')[0].click();
     </Script>
   </postContent>

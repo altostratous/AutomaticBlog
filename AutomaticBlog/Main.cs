@@ -38,13 +38,13 @@ namespace AutomaticBlog
             configurationEditor = new ConfigurationEditor("Config.xml", "Scripts");
             loadConfigEditor();
             // for test 
-            //posts.Add(new Post()
-            //{
-            //    Title = "hsh",
-            //    Abstract = "hsdhl",
-            //    Content = "sdkfj",
-            //    ReadMore = "dljgas"
-            //});
+            posts.Add(new Post()
+            {
+                Title = "خیلی عنوان خوبی انتخاب کردم",
+                Abstract = "خلاصه متن هم که واقعا عالیه اصلا حرف نداره",
+                Content = "خلاصه متن هم که واقعا عالیه اصلا حرف نداره این هم ادامه مطالبه",
+                ReadMore = "این هم ادامه مطالب"
+            });
         }
         
         private void loadConfiguration(string confFileName)
